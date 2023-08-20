@@ -53,3 +53,32 @@ export function checkToken() {
       .then((dateStr) => new Date(dateStr))
   );
 }
+
+export async function markAsAchieved(itemId) {
+  try {
+    const response = await usersAPI.markAsAchieved(itemId);
+    return response; // You might return additional data from the response
+  } catch (error) {
+    throw error;
+  }
+}
+
+export async function getWishlist() {
+  try {
+    const response = await usersAPI.getWishlist();
+    console.log("response.wishlist from users-service: ");
+    console.log(response.wishlist);
+    return response.wishlist; // Return the wishlist array from the response
+  } catch (error) {
+    throw error;
+  }
+}
+
+export async function addToWishlist(newDestination) {
+  try {
+    const response = await usersAPI.addToWishlist(newDestination);
+    return response; // You might return additional data from the response
+  } catch (error) {
+    throw error;
+  }
+}

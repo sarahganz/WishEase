@@ -19,6 +19,12 @@ const userSchema = new Schema(
       minLength: 3,
       required: true,
     },
+    wishDestinations: [
+      { type: mongoose.Schema.Types.ObjectId, ref: "Destination" },
+    ],
+    achievedDestinations: [
+      { type: mongoose.Schema.Types.ObjectId, ref: "Destination" },
+    ],
   },
   {
     timestamps: true,
