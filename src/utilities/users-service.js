@@ -82,3 +82,21 @@ export async function addToWishlist(newDestination) {
     throw error;
   }
 }
+
+export async function getAchievedWishes() {
+  try {
+    const response = await usersAPI.getAchievedWishes();
+    return response; // Return the achievedWishes array from the response
+  } catch (error) {
+    throw error;
+  }
+}
+
+export async function getAchievedWishDetails(id) {
+  try {
+    const response = await usersAPI.getAchievedWishDetails(id); // Use the getAchievedWishDetails function from usersAPI
+    return response; // Return the details of the achieved wish
+  } catch (error) {
+    throw error;
+  }
+}

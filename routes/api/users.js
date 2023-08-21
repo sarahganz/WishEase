@@ -21,5 +21,13 @@ router.put(
 router.get("/wishlist", ensureLoggedIn, usersCtrl.getWishlist);
 // POST /api/users/wishlist
 router.post("/wishlist", ensureLoggedIn, usersCtrl.addToWishlist);
+// GET /api/users/achieved-wishes
+router.get("/achieved-wishes", ensureLoggedIn, usersCtrl.getAchievedWishes);
+// GET /api/users/achieved-wishes/:itemId
+router.get(
+  "/achieved-wishes/:itemId",
+  ensureLoggedIn,
+  usersCtrl.getAchievedWishDetails
+);
 
 module.exports = router;

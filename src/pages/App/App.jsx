@@ -4,8 +4,8 @@ import { getUser } from "../../utilities/users-service";
 import "./App.css";
 import AuthPage from "../AuthPage/AuthPage";
 import WishListPage from "../WishListPage/WishListPage";
-// import NewOrderPage from "../NewOrderPage/NewOrderPage";
-// import OrderHistoryPage from "../OrderHistoryPage/OrderHistoryPage";
+import AchievedWishesPage from "../AchievedWishesPage/AchievedWishesPage";
+import AchievedWishDetailsPage from "../AchievedWishDetailsPage/AchievedWishDetailsPage";
 import NavBar from "../../components/NavBar/NavBar";
 
 export default function App() {
@@ -16,10 +16,12 @@ export default function App() {
         <>
           <NavBar user={user} setUser={setUser} />
           <Routes>
-            {/* Route components in here */}
-            {/* <Route path="/orders/new" element={<NewOrderPage />} /> */}
-            {/* <Route path="/orders" element={<OrderHistoryPage />} /> */}
-            {<Route path="/wishlist" element={<WishListPage user={user} />} />}
+            <Route path="/wishlist" element={<WishListPage user={user} />} />
+            <Route path="/achieved-wishes" element={<AchievedWishesPage />} />
+            <Route
+              path="/achieved-wishes/:id"
+              element={<AchievedWishDetailsPage />}
+            />
           </Routes>
         </>
       ) : (

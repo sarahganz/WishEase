@@ -118,7 +118,7 @@ export default function WishListPage() {
         <button onClick={handleAddDestination}>Add</button>
       </div>
 
-      <h2>Achieved Wishes</h2>
+      {/* <h2>Achieved Wishes</h2>
       <ul>
         {wishlist
           .filter((item) => item.achieved)
@@ -127,7 +127,7 @@ export default function WishListPage() {
               Country: {item.country}, State: {item.state}
             </li>
           ))}
-      </ul>
+      </ul> */}
     </div>
   );
 }

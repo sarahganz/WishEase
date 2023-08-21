@@ -47,3 +47,24 @@ export async function addToWishlist(newDestination) {
     throw error;
   }
 }
+
+export async function getAchievedWishes() {
+  try {
+    const response = await sendRequest(`${BASE_URL}/achieved-wishes`, "GET");
+    return response.achievedWishes; // Return the achievedWishes array from the response
+  } catch (error) {
+    throw error;
+  }
+}
+
+export async function getAchievedWishDetails(id) {
+  try {
+    const response = await sendRequest(
+      `${BASE_URL}/achieved-wishes/${id}`,
+      "GET"
+    );
+    return response; // Return the details of the achieved wish
+  } catch (error) {
+    throw error;
+  }
+}

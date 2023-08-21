@@ -10,6 +10,8 @@ module.exports = {
   markAsAchieved,
   getWishlist,
   addToWishlist,
+  getAchievedWishes,
+  getAchievedWishDetails,
 };
 
 function checkToken(req, res) {
@@ -143,6 +145,73 @@ async function addToWishlist(req, res) {
     res.json({ message: "Destination added to wishlist" });
   } catch (error) {
     console.error("Error adding destination to wishlist:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+}
+
+async function getAchievedWishes(req, res) {
+  try {
+    const user = await User.findById(req.user._id);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    const formattedAchievedWishes = await Promise.all(
+      user.achievedDestinations.map(async (destinationId) => {
+        const destination = await Destination.findById(destinationId);
+        if (!destination) {
+          // Handle the case where the destination is not found
+          return null;
+        }
+        return {
+          _id: destination._id,
+          country: destination.country,
+          state: destination.state,
+          achieved: destination.achieved,
+          // Include other properties if necessary
+        };
+      })
+    );
+
+    const validFormattedAchievedWishes = formattedAchievedWishes.filter(
+      (destination) => destination !== null
+    );
+
+    res.json({ achievedWishes: validFormattedAchievedWishes });
+  } catch (error) {
+    console.error("Error fetching achieved wishes:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+}
+
+async function getAchievedWishDetails(req, res) {
+  try {
+    const { itemId } = req.params;
+
+    const user = await User.findById(req.user._id);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    // Check if the item exists in the achievedDestinations array
+    const item = user.achievedDestinations.find(
+      (destination) => destination.toString() === itemId
+    );
+    if (!item) {
+      return res
+        .status(404)
+        .json({ message: "Item not found in achieved wishes" });
+    }
+
+    // You can return additional details as needed
+    res.json({
+      _id: item._id,
+      country: item.country,
+      state: item.state,
+      // Include other details if necessary
+    });
+  } catch (error) {
+    console.error("Error fetching achieved wish details:", error);
     res.status(500).json({ message: "Internal server error" });
   }
 }

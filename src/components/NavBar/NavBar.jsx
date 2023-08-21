@@ -13,6 +13,8 @@ export default function NavBar({ user, setUser }) {
     <nav>
       <Link to="/wishlist">WISHLIST</Link>
       &nbsp; | &nbsp;
+      <Link to="/achieved-wishes">ACHIEVED WISHES</Link>
+      &nbsp; | &nbsp;
       {/* <Link to="/orders">Order History</Link>
      
       <Link to="/orders/new">New Order</Link>
