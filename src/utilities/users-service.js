@@ -92,11 +92,21 @@ export async function getAchievedWishes() {
   }
 }
 
-export async function getAchievedWishDetails(id) {
+export async function fetchAchievedWishDetails(id) {
   try {
-    const response = await usersAPI.getAchievedWishDetails(id); // Use the getAchievedWishDetails function from usersAPI
-    return response; // Return the details of the achieved wish
+    const response = await usersAPI.getAchievedWishDetails(id);
+    console.log("response from users-service: ");
+    console.log(response);
+
+    if (response && response.country && response.state) {
+      console.log("Fetched achieved wish details:", response);
+      return response;
+    } else {
+      console.log("Country and/or state not found in response.");
+      return null;
+    }
   } catch (error) {
+    console.error("Error fetching achieved wish details:", error);
     throw error;
   }
 }

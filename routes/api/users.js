@@ -23,9 +23,9 @@ router.get("/wishlist", ensureLoggedIn, usersCtrl.getWishlist);
 router.post("/wishlist", ensureLoggedIn, usersCtrl.addToWishlist);
 // GET /api/users/achieved-wishes
 router.get("/achieved-wishes", ensureLoggedIn, usersCtrl.getAchievedWishes);
-// GET /api/users/achieved-wishes/:itemId
+// GET /api/users/achieved-wishes/:id
 router.get(
-  "/achieved-wishes/:itemId",
+  "/achieved-wishes/:id",
   ensureLoggedIn,
   usersCtrl.getAchievedWishDetails
 );

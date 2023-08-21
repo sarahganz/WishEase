@@ -1,43 +1,33 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import * as usersAPI from "../../utilities/users-api";
+import { fetchAchievedWishDetails } from "../../utilities/users-service";
 
-export default function AchievedWishDetailsPage() {
+const AchievedWishDetailsPage = () => {
   const { id } = useParams();
   const [achievedWish, setAchievedWish] = useState(null);
 
   useEffect(() => {
-    console.log("Fetching achieved wish details...");
-    fetchAchievedWishDetails();
-  }, [id]);
-
-  const fetchAchievedWishDetails = async () => {
-    try {
-      const response = await usersAPI.getAchievedWishDetails(id);
-      console.log("Fetched achieved wish details response:", response);
+    const fetchDetails = async () => {
+      const response = await fetchAchievedWishDetails(id);
       setAchievedWish(response);
+    };
 
-      // Check if the response contains the country and state properties
-      if (response && response.country && response.state) {
-        console.log("Country:", response.country);
-        console.log("State:", response.state);
-      } else {
-        console.log("Country and/or state not found in response.");
-      }
-    } catch (error) {
-      console.error("Error fetching achieved wish details:", error);
-    }
-  };
-
-  if (!achievedWish) {
-    return <div>Loading...</div>;
-  }
+    fetchDetails();
+  }, [id]);
 
   return (
     <div>
       <h2>Achieved Wish Details</h2>
-      <p>Country: {achievedWish.country}</p>
-      <p>State: {achievedWish.state}</p>
+      {/* Render the details of the achieved wish */}
+      {achievedWish && (
+        <div>
+          <p>Country: {achievedWish.country}</p>
+          <p>State: {achievedWish.state}</p>
+          {/* Other details */}
+        </div>
+      )}
     </div>
   );
-}
+};
+
+export default AchievedWishDetailsPage;
