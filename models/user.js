@@ -22,6 +22,7 @@ const userSchema = new Schema(
     wishDestinations: [
       { type: mongoose.Schema.Types.ObjectId, ref: "Destination" },
     ],
+
     achievedDestinations: [
       { type: mongoose.Schema.Types.ObjectId, ref: "Destination" },
     ],

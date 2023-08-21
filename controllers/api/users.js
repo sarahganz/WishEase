@@ -14,7 +14,7 @@ module.exports = {
 
 function checkToken(req, res) {
   // req.user will always be there for you when a token is sent
-  console.log("req.user", req.user);
+  // console.log("req.user", req.user);
   res.json(req.exp);
 }
 
@@ -56,12 +56,24 @@ async function markAsAchieved(req, res) {
       return res.status(404).json({ message: "User not found" });
     }
 
-    const item = user.wishDestinations.id(itemId);
-    if (!item) {
-      return res.status(404).json({ message: "Item not found" });
+    // Check if the item exists in the wishDestinations array
+    if (!user.wishDestinations.includes(itemId)) {
+      return res.status(404).json({ message: "Item not found in wishlist" });
     }
 
-    item.achieved = true; // Mark item as achieved
+    // Find the item in the wishDestinations array
+    const itemIndex = user.wishDestinations.indexOf(itemId);
+    if (itemIndex === -1) {
+      return res.status(404).json({ message: "Item not found in wishlist" });
+    }
+
+    // Create a reference to the item
+    const item = user.wishDestinations[itemIndex];
+
+    // Move the item to achievedDestinations and remove from wishDestinations
+    user.achievedDestinations.push(item);
+    user.wishDestinations.splice(itemIndex, 1);
+
     await user.save();
 
     res.json({ message: "Item marked as achieved" });

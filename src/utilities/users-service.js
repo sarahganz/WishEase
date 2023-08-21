@@ -66,8 +66,8 @@ export async function markAsAchieved(itemId) {
 export async function getWishlist() {
   try {
     const response = await usersAPI.getWishlist();
-    console.log("response.wishlist from users-service: ");
-    console.log(response.wishlist);
+    // console.log("response.wishlist from users-service: ");
+    // console.log(response.wishlist);
     return response.wishlist; // Return the wishlist array from the response
   } catch (error) {
     throw error;

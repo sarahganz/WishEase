@@ -6,25 +6,36 @@ import * as usersAPI from "../../utilities/users-api";
 export default function WishListPage() {
   //   const user = getUser();
   const [wishlist, setWishlist] = useState([]);
+  const [achievedWishes, setAchievedWishes] = useState([]);
+
   const [newDestination, setNewDestination] = useState({
     country: "",
     state: "",
   });
 
   useEffect(() => {
-    console.log("Fetching wishlist data...");
+    // console.log("Fetching wishlist data...");
     fetchWishlist();
+    fetchAchievedWishes();
   }, []);
 
   const fetchWishlist = async () => {
     try {
-      const wishlistData = await usersAPI.getWishlist();
-      console.log("Fetched wishlist data:", wishlistData); // Log the fetched data
-      console.log("First item country:", wishlistData[0].country);
-      console.log("First item state:", wishlistData[0].state);
-      setWishlist(wishlistData); // Set wishlist state to the fetched array
+      const response = await usersAPI.getWishlist();
+      setWishlist(response.data.wishlist);
     } catch (error) {
       console.error("Error fetching wishlist:", error);
+    }
+  };
+
+  const fetchAchievedWishes = async () => {
+    try {
+      // Fetch achieved wishes data from the server
+      // You need to implement this function in your usersAPI
+      const response = await usersAPI.getAchievedWishes();
+      setAchievedWishes(response.data.achievedWishes);
+    } catch (error) {
+      console.error("Error fetching achieved wishes:", error);
     }
   };
 
@@ -37,13 +48,17 @@ export default function WishListPage() {
         )
       );
     } catch (error) {
-      console.error("Error marking item as achieved:", error);
+      if (error.response && error.response.data) {
+        console.error("Error marking item as achieved:", error.response.data);
+      } else {
+        console.error("Error marking item as achieved:", error.message);
+      }
     }
   };
 
   const handleAddDestination = async () => {
-    console.log("Country:", newDestination.country);
-    console.log("State:", newDestination.state);
+    // console.log("Country:", newDestination.country);
+    // console.log("State:", newDestination.state);
     try {
       if (!newDestination.country || !newDestination.state) {
         console.error("Country and state are required.");
@@ -106,13 +121,11 @@ export default function WishListPage() {
 
       <h2>Achieved Wishes</h2>
       <ul>
-        {wishlist
-          .filter((item) => item.achieved)
-          .map((item) => (
-            <li key={item._id}>
-              Country: {item.country}, State: {item.state}
-            </li>
-          ))}
+        {achievedWishes.map((item) => (
+          <li key={item._id}>
+            Country: {item.country}, State: {item.state}
+          </li>
+        ))}
       </ul>
     </div>
   );
