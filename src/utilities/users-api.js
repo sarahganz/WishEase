@@ -29,8 +29,6 @@ export async function markAsAchieved(itemId) {
 export async function getWishlist() {
   try {
     const response = await sendRequest(`${BASE_URL}/wishlist`, "GET");
-    // console.log("response.wishlist from users-api");
-    // console.log(response.wishlist);
     return response.wishlist; // Return the wishlist array from the response
   } catch (error) {
     throw error;

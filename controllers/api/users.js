@@ -129,11 +129,16 @@ async function addToWishlist(req, res) {
     }
 
     // Create a new Destination object
+    console.log("Creating new destination:", { country, state });
     const newDestination = new Destination({ country, state });
 
-    // Add the new Destination to the user's wishlist
-    user.wishDestinations.push(newDestination);
+    // Save the new Destination to the database
+    await newDestination.save();
+
+    // Add the new Destination's ObjectId to the user's wishlist
+    user.wishDestinations.push(newDestination._id);
     await user.save();
+    console.log("User after saving:", user);
 
     res.json({ message: "Destination added to wishlist" });
   } catch (error) {

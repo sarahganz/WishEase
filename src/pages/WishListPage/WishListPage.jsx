@@ -16,28 +16,29 @@ export default function WishListPage() {
   useEffect(() => {
     // console.log("Fetching wishlist data...");
     fetchWishlist();
-    fetchAchievedWishes();
+    // fetchAchievedWishes();
   }, []);
 
   const fetchWishlist = async () => {
     try {
-      const response = await usersAPI.getWishlist();
-      setWishlist(response.data.wishlist);
+      const wishlist = await usersAPI.getWishlist();
+      console.log("Fetched wishlist:", wishlist);
+      setWishlist(wishlist);
     } catch (error) {
       console.error("Error fetching wishlist:", error);
     }
   };
 
-  const fetchAchievedWishes = async () => {
-    try {
-      // Fetch achieved wishes data from the server
-      // You need to implement this function in your usersAPI
-      const response = await usersAPI.getAchievedWishes();
-      setAchievedWishes(response.data.achievedWishes);
-    } catch (error) {
-      console.error("Error fetching achieved wishes:", error);
-    }
-  };
+  //   const fetchAchievedWishes = async () => {
+  //     try {
+  //       // Fetch achieved wishes data from the server
+  //       // You need to implement this function in your usersAPI
+  //       const response = await usersAPI.getAchievedWishes();
+  //       setAchievedWishes(response.data.achievedWishes);
+  //     } catch (error) {
+  //       console.error("Error fetching achieved wishes:", error);
+  //     }
+  //   };
 
   const handleCheckboxChange = async (itemId) => {
     try {
@@ -48,15 +49,13 @@ export default function WishListPage() {
         )
       );
     } catch (error) {
-      if (error.response && error.response.data) {
-        console.error("Error marking item as achieved:", error.response.data);
-      } else {
-        console.error("Error marking item as achieved:", error.message);
-      }
+      console.error("Error marking item as achieved:", error);
     }
   };
 
   const handleAddDestination = async () => {
+    console.log("Adding destination:", newDestination); // Log the data
+
     // console.log("Country:", newDestination.country);
     // console.log("State:", newDestination.state);
     try {
@@ -121,11 +120,13 @@ export default function WishListPage() {
 
       <h2>Achieved Wishes</h2>
       <ul>
-        {achievedWishes.map((item) => (
-          <li key={item._id}>
-            Country: {item.country}, State: {item.state}
-          </li>
-        ))}
+        {wishlist
+          .filter((item) => item.achieved)
+          .map((item) => (
+            <li key={item._id}>
+              Country: {item.country}, State: {item.state}
+            </li>
+          ))}
       </ul>
     </div>
   );
