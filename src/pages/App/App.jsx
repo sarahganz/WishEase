@@ -20,7 +20,7 @@ export default function App() {
             <Route path="/achieved-wishes" element={<AchievedWishesPage />} />
             <Route
               path="/achieved-wishes/:id"
-              element={<AchievedWishDetailsPage />}
+              element={<AchievedWishDetailsPage user={user} />}
             />
           </Routes>
         </>

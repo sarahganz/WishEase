@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { fetchAchievedWishDetails } from "../../utilities/users-service";
 
-const AchievedWishDetailsPage = () => {
+import { fetchAchievedWishDetails } from "../../utilities/users-service";
+import CreateDiaryEntryForm from "../../components/CreateDiaryEntryForm/CreateDiaryEntryForm";
+
+function AchievedWishDetailsPage({ user }) {
   const { id } = useParams();
   const [achievedWish, setAchievedWish] = useState(null);
 
@@ -18,7 +20,6 @@ const AchievedWishDetailsPage = () => {
   return (
     <div>
       <h2>Achieved Wish Details</h2>
-      {/* Render the details of the achieved wish */}
       {achievedWish && (
         <div>
           <p>Country: {achievedWish.country}</p>
@@ -26,8 +27,10 @@ const AchievedWishDetailsPage = () => {
           {/* Other details */}
         </div>
       )}
+      <h2>Create Diary Entry</h2>
+      <CreateDiaryEntryForm user={user} destination={achievedWish} />
     </div>
   );
-};
+}
 
 export default AchievedWishDetailsPage;

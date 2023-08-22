@@ -85,7 +85,6 @@ export default function WishListPage() {
               checked={item.achieved}
             />
             Country: {item.country}, State: {item.state}
-            {/* Display country and state */}
           </li>
         ))}
       </ul>
