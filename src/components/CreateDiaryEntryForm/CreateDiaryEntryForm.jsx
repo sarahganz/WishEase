@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import { createDiaryEntry } from "../../utilities/diary-service";
 
-function CreateDiaryEntryForm({ user, destination }) {
+function CreateDiaryEntryForm({ user, destination, onNewDiaryEntry }) {
   const [formData, setFormData] = useState({
     fromDate: "",
     toDate: "",
@@ -25,6 +25,9 @@ function CreateDiaryEntryForm({ user, destination }) {
       console.log("Creating diary entry:", newDiaryEntry);
 
       await createDiaryEntry(newDiaryEntry);
+      if (onNewDiaryEntry) {
+        onNewDiaryEntry(newDiaryEntry);
+      }
       resetForm();
     } catch (error) {
       console.error("Error creating diary entry:", error);

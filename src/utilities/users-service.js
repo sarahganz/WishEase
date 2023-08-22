@@ -1,6 +1,7 @@
 // Import all named exports attached to a usersAPI object
 // This syntax can be helpful documenting where the methods come from
 import * as usersAPI from "./users-api";
+import sendRequest from "./send-request";
 
 export async function signUp(userData) {
   // Delegate the network request code to the users-api.js API module
@@ -109,4 +110,12 @@ export async function fetchAchievedWishDetails(id) {
     console.error("Error fetching achieved wish details:", error);
     throw error;
   }
+}
+
+export async function fetchDiaryEntries(destinationId) {
+  const response = await sendRequest(
+    `/api/diary?destination=${destinationId}`,
+    "GET" // Pass the HTTP method as a string
+  );
+  return response;
 }

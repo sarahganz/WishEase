@@ -22,6 +22,18 @@ async function createDiaryEntry(req, res) {
   }
 }
 
+async function getDiaryEntries(req, res) {
+  try {
+    const { destination } = req.query;
+    const diaryEntries = await Diary.find({ destination }).exec();
+    res.status(200).json(diaryEntries);
+  } catch (error) {
+    console.error("Error fetching diary entries:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+}
+
 module.exports = {
   createDiaryEntry,
+  getDiaryEntries,
 };
