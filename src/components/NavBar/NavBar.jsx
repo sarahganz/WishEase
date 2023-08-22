@@ -9,8 +9,19 @@ export default function NavBar({ user, setUser }) {
     // Update state will also cause a re-render
     setUser(null);
   }
+
+  const logoPath = "/logoWishEase.png";
+
   return (
     <nav>
+      <Link to="/">
+        <img
+          src={logoPath}
+          alt="Logo"
+          style={{ width: "200px", marginRight: "5px" }}
+        />
+      </Link>
+      &nbsp; | &nbsp;
       <Link to="/wishlist">WISHLIST</Link>
       &nbsp; | &nbsp;
       <Link to="/achieved-wishes">ACHIEVED WISHES</Link>
