@@ -14,13 +14,13 @@ export default function NavBar({ user, setUser }) {
 
   return (
     <nav>
-      <Link to="/">
+      {/* <Link to="/">
         <img
           src={logoPath}
           alt="Logo"
           style={{ width: "200px", marginRight: "5px" }}
         />
-      </Link>
+      </Link> */}
       &nbsp; | &nbsp;
       <Link to="/wishlist">WISHLIST</Link>
       &nbsp; | &nbsp;

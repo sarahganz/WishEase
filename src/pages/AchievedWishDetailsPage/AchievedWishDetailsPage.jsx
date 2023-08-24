@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-
+import axios from "axios";
 import * as usersService from "../../utilities/users-service";
 import CreateDiaryEntryForm from "../../components/CreateDiaryEntryForm/CreateDiaryEntryForm";
 
@@ -8,9 +8,13 @@ function AchievedWishDetailsPage({ user }) {
   const { id } = useParams();
   const [achievedWish, setAchievedWish] = useState(null);
   const [diaryEntries, setDiaryEntries] = useState([]);
-  const handleNewDiaryEntry = (newEntry) => {
-    setDiaryEntries((prevEntries) => [...prevEntries, newEntry]);
-  };
+  const [formData, setFormData] = useState({
+    fromDate: "",
+    toDate: "",
+    restaurants: "",
+    information: "",
+    photos: [],
+  });
 
   useEffect(() => {
     const fetchDetails = async () => {
@@ -19,13 +23,51 @@ function AchievedWishDetailsPage({ user }) {
     };
 
     const fetchDiaries = async () => {
-      const diaries = await usersService.fetchDiaryEntries(id); // Modify this function to fetch diary entries
-      setDiaryEntries(diaries);
+      try {
+        const diaries = await usersService.fetchDiaryEntries(id);
+        setDiaryEntries(diaries);
+      } catch (error) {
+        console.error("Error fetching diary entries:", error);
+      }
     };
 
     fetchDetails();
     fetchDiaries();
   }, [id]);
+
+  const handleNewDiaryEntry = async (newEntry) => {
+    try {
+      const diaries = await usersService.fetchDiaryEntries(id);
+      setDiaryEntries(diaries);
+      setFormData({
+        fromDate: "",
+        toDate: "",
+        restaurants: "",
+        information: "",
+        photos: [],
+      });
+    } catch (error) {
+      console.error("Error fetching new diary entries:", error);
+    }
+  };
+
+  const handleDeleteDiaryEntry = async (entryId) => {
+    try {
+      const token = localStorage.getItem("token");
+      await axios.delete(`/api/diary/${entryId}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      // Update the diary entries in state by removing the deleted entry
+      setDiaryEntries((prevEntries) =>
+        prevEntries.filter((entry) => entry._id !== entryId)
+      );
+
+      console.log("Diary entry deleted successfully!");
+    } catch (error) {
+      console.error("Error deleting diary entry:", error);
+    }
+  };
 
   return (
     <div>
@@ -34,13 +76,20 @@ function AchievedWishDetailsPage({ user }) {
         <div>
           <p>Country: {achievedWish.country}</p>
           <p>State: {achievedWish.state}</p>
-          {/* Other details */}
         </div>
       )}
       <h2>Create Diary Entry</h2>
       <CreateDiaryEntryForm
         user={user}
         destination={achievedWish}
+        initialFormData={{
+          fromDate: "",
+          toDate: "",
+          restaurants: "",
+          information: "",
+          photos: [],
+        }}
+        setFormData={setFormData}
         onNewDiaryEntry={handleNewDiaryEntry}
       />
       <h2>Diary Entries</h2>
@@ -55,8 +104,23 @@ function AchievedWishDetailsPage({ user }) {
               <p>To: {new Date(entry.toDate).toLocaleDateString()}</p>
             )}
             {entry.restaurants && <p>Restaurants: {entry.restaurants}</p>}
-            {entry.information && <p>Information: {entry.information}</p>}
-            {/* Display other diary entry details */}
+
+            {entry.photos && (
+              <div>
+                {/* <h4>Photos:</h4> */}
+                {entry.photos.map((photoUrl, index) => (
+                  <img
+                    key={index}
+                    src={photoUrl}
+                    alt={`Diary entry photo ${index + 1}`}
+                    style={{ maxWidth: "200px", maxHeight: "200px" }}
+                  />
+                ))}
+              </div>
+            )}
+            <button onClick={() => handleDeleteDiaryEntry(entry._id)}>
+              Delete
+            </button>
           </li>
         ))}
       </ul>

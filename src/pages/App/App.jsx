@@ -7,6 +7,13 @@ import WishListPage from "../WishListPage/WishListPage";
 import AchievedWishesPage from "../AchievedWishesPage/AchievedWishesPage";
 import AchievedWishDetailsPage from "../AchievedWishDetailsPage/AchievedWishDetailsPage";
 import NavBar from "../../components/NavBar/NavBar";
+import AWS from "aws-sdk";
+
+AWS.config.update({
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  region: "us-east-2", // Replace with your AWS region
+});
 
 export default function App() {
   const [user, setUser] = useState(getUser());

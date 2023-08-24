@@ -60,9 +60,9 @@ export async function getAchievedWishes() {
 export async function getAchievedWishDetails(id) {
   try {
     const url = `/api/users/achieved-wishes/${id}`;
-    console.log("Fetching achieved wish details from URL:", url);
+    // console.log("Fetching achieved wish details from URL:", url);
     const response = await sendRequest(url);
-    console.log("Fetched achieved wish details response:", response);
+    // console.log("Fetched achieved wish details response:", response);
     return response;
   } catch (error) {
     console.error("Error fetching achieved wish details:", error);

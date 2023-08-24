@@ -1,30 +1,54 @@
 import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import { createDiaryEntry } from "../../utilities/diary-service";
+import axios from "axios";
+import "./CreateDiaryEntryForm.css";
 
-function CreateDiaryEntryForm({ user, destination, onNewDiaryEntry }) {
-  const [formData, setFormData] = useState({
-    fromDate: "",
-    toDate: "",
-    restaurants: "",
-    information: "",
-    photos: [],
-  });
+function CreateDiaryEntryForm({
+  user,
+  destination,
+  initialFormData,
+  setFormData,
+  onNewDiaryEntry,
+}) {
+  const [localFormData, setLocalFormData] = useState(initialFormData);
 
-  const handleSubmit = async () => {
+  const handlePhotoChange = (e) => {
+    const newPhotos = Array.from(e.target.files); // Convert FileList to an array
+    setLocalFormData((prevData) => ({
+      ...prevData,
+      photos: [...prevData.photos, ...newPhotos], // Append new photos to existing list
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
     console.log("Creating diary entry...");
     try {
-      const newDiaryEntry = {
-        fromDate: formData.fromDate,
-        toDate: formData.toDate,
-        restaurants: formData.restaurants,
-        information: formData.information,
-        photos: formData.photos,
-        destination: destination._id, // Use the _id property of the destination
-      };
-      console.log("Creating diary entry:", newDiaryEntry);
+      const newDiaryEntry = new FormData();
 
-      await createDiaryEntry(newDiaryEntry);
+      newDiaryEntry.append("fromDate", localFormData.fromDate);
+      newDiaryEntry.append("toDate", localFormData.toDate);
+      newDiaryEntry.append("restaurants", localFormData.restaurants);
+      newDiaryEntry.append("information", localFormData.information);
+
+      for (let i = 0; i < localFormData.photos.length; i++) {
+        newDiaryEntry.append("photos", localFormData.photos[i]);
+      }
+
+      newDiaryEntry.append("destination", destination._id);
+
+      console.log("Creating diary entry:", Object.fromEntries(newDiaryEntry));
+      const token = localStorage.getItem("token");
+      const response = await axios.post("/api/diary", newDiaryEntry, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      if (response) {
+        console.log("Diary entry created successfully!");
+      }
+
       if (onNewDiaryEntry) {
         onNewDiaryEntry(newDiaryEntry);
       }
@@ -35,7 +59,7 @@ function CreateDiaryEntryForm({ user, destination, onNewDiaryEntry }) {
   };
 
   const resetForm = () => {
-    setFormData({
+    setLocalFormData({
       fromDate: "",
       toDate: "",
       restaurants: "",
@@ -45,41 +69,67 @@ function CreateDiaryEntryForm({ user, destination, onNewDiaryEntry }) {
   };
 
   return (
-    <form>
+    <form encType="multipart/form-data" onSubmit={handleSubmit}>
       <label>From Date:</label>
       <input
         type="date"
-        value={formData.fromDate} // Use formData.fromDate
-        onChange={(e) => setFormData({ ...formData, fromDate: e.target.value })} // Update the state with the new value
+        value={localFormData.fromDate}
+        onChange={(e) =>
+          setLocalFormData({ ...localFormData, fromDate: e.target.value })
+        }
       />
 
       <label>To Date:</label>
       <input
         type="date"
-        value={formData.toDate} // Use formData.toDate
-        onChange={(e) => setFormData({ ...formData, toDate: e.target.value })} // Update the state with the new value
+        value={localFormData.toDate}
+        onChange={(e) =>
+          setLocalFormData({ ...localFormData, toDate: e.target.value })
+        }
       />
 
       <label>Restaurants:</label>
       <input
         type="text"
-        value={formData.restaurants} // Use formData.restaurants
+        value={localFormData.restaurants}
         onChange={(e) =>
-          setFormData({ ...formData, restaurants: e.target.value })
-        } // Update the state with the new value
+          setLocalFormData({ ...localFormData, restaurants: e.target.value })
+        }
       />
 
       <label>Information:</label>
       <textarea
-        value={formData.information} // Use formData.information
+        value={localFormData.information}
         onChange={(e) =>
-          setFormData({ ...formData, information: e.target.value })
-        } // Update the state with the new value
+          setLocalFormData({ ...localFormData, information: e.target.value })
+        }
       />
 
-      {/* Add input fields for photos here */}
+      <label>Photos:</label>
+      <div className="file-input-container">
+        <input
+          type="file"
+          accept="image/*"
+          multiple
+          onChange={handlePhotoChange}
+          id="file-input"
+        />
+        <label htmlFor="file-input" className="file-input-label">
+          Choose Files
+        </label>
+      </div>
+      {localFormData.photos.length > 0 && (
+        <div>
+          <h4>Selected Photos:</h4>
+          <ul>
+            {localFormData.photos.map((photo, index) => (
+              <li key={index}>{photo.name}</li>
+            ))}
+          </ul>
+        </div>
+      )}
 
-      <Button onClick={handleSubmit}>Create Diary Entry</Button>
+      <Button type="submit">Create Diary Entry</Button>
     </form>
   );
 }

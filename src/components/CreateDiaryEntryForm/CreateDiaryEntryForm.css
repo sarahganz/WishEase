@@ -1,0 +1,21 @@
+.file-input-container {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.file-input-container input[type="file"] {
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+
+.file-input-label {
+  background-color: #3498db;
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: inline-block;
+}
