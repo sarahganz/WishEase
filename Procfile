@@ -1,1 +1,1 @@
-web: gunicorn wishease.wsgi
+web: node server.js
