@@ -29,5 +29,11 @@ router.get(
   ensureLoggedIn,
   usersCtrl.getAchievedWishDetails
 );
+// DELETE /api/users/wishlist/:itemId
+router.delete(
+  "/wishlist/:itemId",
+  ensureLoggedIn,
+  usersCtrl.deleteFromWishlist
+);
 
 module.exports = router;

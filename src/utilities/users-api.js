@@ -57,9 +57,9 @@ export async function getAchievedWishes() {
   }
 }
 
-export async function getAchievedWishDetails(id) {
+export async function getAchievedWishDetails(itemId) {
   try {
-    const url = `/api/users/achieved-wishes/${id}`;
+    const url = `/api/users/achieved-wishes/${itemId}`;
     // console.log("Fetching achieved wish details from URL:", url);
     const response = await sendRequest(url);
     // console.log("Fetched achieved wish details response:", response);
@@ -67,5 +67,21 @@ export async function getAchievedWishDetails(id) {
   } catch (error) {
     console.error("Error fetching achieved wish details:", error);
     throw error;
+  }
+}
+
+export async function deleteFromWishlist(itemId) {
+  const token = localStorage.getItem("token");
+  const response = await fetch(`${BASE_URL}/wishlist/${itemId}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`, // Include the token in the Authorization header
+    },
+  });
+
+  if (!response.ok) {
+    const errorMessage = await response.text();
+    throw new Error(errorMessage);
   }
 }

@@ -18,4 +18,6 @@ router.post(
 // Delete a diary entry by ID
 router.delete("/:id", ensureLoggedIn, diaryCtrl.deleteDiaryEntry);
 
+// router.put("/:id", diaryCtrl.updateDiaryEntry);
+
 module.exports = router;

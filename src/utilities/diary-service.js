@@ -35,3 +35,15 @@ export async function deleteDiaryEntry(entryId) {
     headers: { Authorization: `Bearer ${token}` },
   });
 }
+
+export async function updateDiaryEntry(entryId, formData) {
+  try {
+    const token = localStorage.getItem("token");
+    const response = await axios.put(`/api/diary/${entryId}`, formData, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    return response.data; // Return the updated entry data
+  } catch (error) {
+    throw error;
+  }
+}

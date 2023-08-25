@@ -2,6 +2,8 @@
 // This syntax can be helpful documenting where the methods come from
 import * as usersAPI from "./users-api";
 import sendRequest from "./send-request";
+import axios from "axios";
+const BASE_URL = "/api/users";
 
 export async function signUp(userData) {
   // Delegate the network request code to the users-api.js API module
@@ -118,4 +120,17 @@ export async function fetchDiaryEntries(destinationId) {
     "GET" // Pass the HTTP method as a string
   );
   return response;
+}
+
+export async function deleteFromWishlist(itemId) {
+  try {
+    const response = await axios.delete(`${BASE_URL}/wishlist/${itemId}`);
+    console.log("response from users-service: ");
+    console.log(response);
+    console.log("response.data from users-service: ");
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    throw error.response.data;
+  }
 }

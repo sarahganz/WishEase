@@ -104,6 +104,7 @@ function AchievedWishDetailsPage({ user }) {
               <p>To: {new Date(entry.toDate).toLocaleDateString()}</p>
             )}
             {entry.restaurants && <p>Restaurants: {entry.restaurants}</p>}
+            {entry.information && <p>Information: {entry.information}</p>}
 
             {entry.photos && (
               <div>

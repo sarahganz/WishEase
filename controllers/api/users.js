@@ -12,6 +12,7 @@ module.exports = {
   addToWishlist,
   getAchievedWishes,
   getAchievedWishDetails,
+  deleteFromWishlist,
 };
 
 function checkToken(req, res) {
@@ -214,6 +215,36 @@ async function getAchievedWishDetails(req, res) {
   } catch (error) {
     console.error("Error fetching achieved wish details:", error);
     res.status(500).json({ error: "Internal server error" });
+  }
+}
+
+async function deleteFromWishlist(req, res) {
+  try {
+    const { itemId } = req.params;
+    console.log("itemId:", itemId);
+    console.log("req.user._id:", req.user._id);
+
+    const user = await User.findById(req.user._id);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    // Check if the item exists in the wishDestinations array
+    if (!user.wishDestinations.includes(itemId)) {
+      return res.status(404).json({ message: "Item not found in wishlist" });
+    }
+
+    // Remove the item from the wishDestinations array
+    user.wishDestinations = user.wishDestinations.filter(
+      (destinationId) => destinationId.toString() !== itemId
+    );
+
+    await user.save();
+
+    res.json({ message: "Item removed from wishlist" });
+  } catch (error) {
+    console.error("Error removing item from wishlist:", error);
+    res.status(500).json({ message: "Internal server error" });
   }
 }
 

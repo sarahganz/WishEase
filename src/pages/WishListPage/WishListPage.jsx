@@ -72,6 +72,18 @@ export default function WishListPage() {
     }
   };
 
+  const handleDeleteDestination = async (itemId) => {
+    try {
+      console.log("Deleting destination:", itemId);
+      await usersAPI.deleteFromWishlist(itemId);
+      setWishlist((prevWishlist) =>
+        prevWishlist.filter((item) => item._id !== itemId)
+      );
+    } catch (error) {
+      console.error("Error deleting destination:", error);
+    }
+  };
+
   return (
     <div>
       <h2>Your Wishlist</h2>
@@ -85,6 +97,9 @@ export default function WishListPage() {
               checked={item.achieved}
             />
             Country: {item.country}, State: {item.state}
+            <button onClick={() => handleDeleteDestination(item._id)}>
+              Delete
+            </button>
           </li>
         ))}
       </ul>
