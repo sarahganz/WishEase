@@ -21,6 +21,7 @@ export default function NavBar({ user, setUser }) {
           style={{ width: "200px", marginRight: "5px" }}
         />
       </Link> */}
+      <Link to="/">HOME</Link>
       &nbsp; | &nbsp;
       <Link to="/wishlist">WISHLIST</Link>
       &nbsp; | &nbsp;

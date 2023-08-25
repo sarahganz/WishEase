@@ -19,6 +19,7 @@ function AchievedWishDetailsPage({ user }) {
   useEffect(() => {
     const fetchDetails = async () => {
       const response = await usersService.fetchAchievedWishDetails(id);
+      console.log("id", id);
       setAchievedWish(response);
     };
 

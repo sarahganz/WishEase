@@ -6,6 +6,7 @@ import AuthPage from "../AuthPage/AuthPage";
 import WishListPage from "../WishListPage/WishListPage";
 import AchievedWishesPage from "../AchievedWishesPage/AchievedWishesPage";
 import AchievedWishDetailsPage from "../AchievedWishDetailsPage/AchievedWishDetailsPage";
+import HomePage from "../HomePage/HomePage";
 import NavBar from "../../components/NavBar/NavBar";
 import AWS from "aws-sdk";
 
@@ -23,6 +24,7 @@ export default function App() {
         <>
           <NavBar user={user} setUser={setUser} />
           <Routes>
+            <Route path="/" element={<HomePage user={user} />} />
             <Route path="/wishlist" element={<WishListPage user={user} />} />
             <Route path="/achieved-wishes" element={<AchievedWishesPage />} />
             <Route
