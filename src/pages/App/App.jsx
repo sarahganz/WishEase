@@ -10,6 +10,7 @@ import HomePage from "../HomePage/HomePage";
 import AboutPage from "../AboutPage/AboutPage";
 import WelcomePage from "../WelcomePage/WelcomePage";
 import NavBar from "../../components/NavBar/NavBar";
+import Footer from "../../components/Footer/Footer";
 import AWS from "aws-sdk";
 import { set } from "mongoose";
 
@@ -35,6 +36,7 @@ export default function App() {
               element={<AchievedWishDetailsPage user={user} />}
             />
           </Routes>
+          <Footer />
         </>
       ) : (
         <Routes>
