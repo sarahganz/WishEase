@@ -1,41 +1,55 @@
-import { Link } from "react-router-dom";
-// Using the import below, we can call any exported function using: userService.someMethod()
+import React from "react";
+import { Link, NavLink } from "react-router-dom";
 import * as userService from "../../utilities/users-service";
+import "./NavBar.css"; // Import your custom CSS for additional styling
 
 export default function NavBar({ user, setUser }) {
   function handleLogOut() {
-    // Delegate to the users-service
     userService.logOut();
-    // Update state will also cause a re-render
     setUser(null);
   }
 
-  const logoPath = "/logoWishEase.png";
+  const logoPath = "/logoPurpleBackgr.png";
 
   return (
-    <nav>
-      {/* <Link to="/">
-        <img
-          src={logoPath}
-          alt="Logo"
-          style={{ width: "200px", marginRight: "5px" }}
-        />
-      </Link> */}
-      <Link to="/">HOME</Link>
-      &nbsp; | &nbsp;
-      <Link to="/wishlist">WISHLIST</Link>
-      &nbsp; | &nbsp;
-      <Link to="/achieved-wishes">ACHIEVED WISHES</Link>
-      &nbsp; | &nbsp;
-      {/* <Link to="/orders">Order History</Link>
-     
-      <Link to="/orders/new">New Order</Link>
-      &nbsp;&nbsp; */}
-      <span>Welcome, {user.name}</span>
-      &nbsp; &nbsp;
-      <Link to="" onClick={handleLogOut}>
-        Log Out
-      </Link>
+    <nav className="navbar navbar-expand-lg ">
+      <div className="container d-flex justify-content-between">
+        <div className="d-flex align-items-center">
+          <Link className="navbar-brand" to="/">
+            <img src={logoPath} alt="Logo" className="logo-image" />
+          </Link>
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
+        </div>
+        <div className="navbar-nav ml-auto d-flex align-items-center">
+          <NavLink className="nav-link" to="/" exact activeClassName="active">
+            HOME
+          </NavLink>
+          <NavLink className="nav-link" to="/wishlist" activeClassName="active">
+            WISHLIST
+          </NavLink>
+          <NavLink
+            className="nav-link"
+            to="/achieved-wishes"
+            activeClassName="active"
+          >
+            ACHIEVED WISHES
+          </NavLink>
+          <Link className="nav-link" to="#" onClick={handleLogOut}>
+            LOG OUT
+          </Link>
+          {/* <span className="navbar-text">{user.name}</span> */}
+        </div>
+      </div>
     </nav>
   );
 }

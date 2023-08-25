@@ -12,10 +12,15 @@
 }
 
 .file-input-label {
-  background-color: #3498db;
-  color: #fff;
-  padding: 8px 12px;
+  background-color: #c1a9af;
+  color: #69626d;
+  padding: 8px 16px;
   border-radius: 4px;
   cursor: pointer;
   display: inline-block;
+}
+.file-input-label:hover {
+  background-color: #ac9d86;
+  color: #69626d;
+  /* inner-border: 1px solid #69626d; */
 }

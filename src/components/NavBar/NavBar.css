@@ -1,0 +1,88 @@
+/* NavBar.css */
+.navbar {
+  background-color: #69626d;
+  color: #c1a9af;
+  padding: 0;
+  margin: 0;
+  border: none;
+  padding-left: 10px;
+}
+
+.container {
+  margin: 0;
+  padding: 0;
+}
+
+nav.navbar.sticky-top.navbar-expand-lg {
+  padding-right: 0;
+  margin-left: 0;
+}
+
+/* Adjust color and styles for larger screens */
+@media (min-width: 768px) {
+  .navbar-nav {
+    color: #deced3;
+  }
+  .nav-link {
+    color: #c1a9af;
+  }
+  .navbar-toggler-icon {
+    background-color: #ac9d86;
+  }
+  .navbar-text {
+    color: #cbbeb3;
+  }
+  .nav-link:hover {
+    color: #deced3;
+  }
+  .navbar-nav .nav-link.active,
+  .navbar-nav {
+    color: #deced3;
+  }
+  .nav-link.active {
+    color: white;
+    font-weight: bold;
+  }
+}
+
+.logo-image {
+  width: 100%; /* Makes the image width 100% of its container */
+  max-width: 200px; /* Set a maximum width for larger screens */
+  margin-right: 5px;
+}
+
+@media (min-width: 768px) {
+  /* Medium and larger screens */
+  .navbar-nav {
+    padding-left: 15px;
+  }
+  .navbar-text {
+    font-size: 18px;
+  }
+}
+
+@media (min-width: 992px) {
+  /* Large and larger screens */
+  .navbar-text {
+    font-size: 20px;
+  }
+}
+
+/* Override body font styles and colors */
+.navbar-body {
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  color: inherit;
+}
+
+.navbar-expand-lg {
+  justify-content: space-between;
+}
+
+.navbar-nav {
+  flex-direction: row;
+  align-items: center;
+  align-self: center;
+}

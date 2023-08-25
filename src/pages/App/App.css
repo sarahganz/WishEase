@@ -1,7 +1,9 @@
 .App {
   text-align: center;
   margin: 0;
+  padding: 0;
   padding-bottom: 4rem;
+  box-sizing: border-box;
 }
 
 .App-logo {
@@ -37,4 +39,19 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+button {
+  background-color: #c1a9af;
+  color: #69626d;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #ac9d86;
+  color: #69626d;
+  /* inner-border: 1px solid #69626d; */
 }

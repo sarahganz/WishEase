@@ -129,7 +129,7 @@ function CreateDiaryEntryForm({
         </div>
       )}
 
-      <Button type="submit">Create Diary Entry</Button>
+      <button type="submit">Create Diary Entry</button>
     </form>
   );
 }

@@ -58,7 +58,7 @@ const HomePage = ({ user }) => {
           photos.
         </p>
         <Link to="/wishlist">
-          <button className="add-wish-button">Add New Wish Destination</button>
+          <button>Add New Wish Destination</button>
         </Link>
       </div>
       {diaryEntriesWithPhotos.length > 0 && (
