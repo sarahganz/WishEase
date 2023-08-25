@@ -44,7 +44,7 @@ export default function NavBar({ user, setUser }) {
           >
             ACHIEVED WISHES
           </NavLink>
-          <Link className="nav-link" to="#" onClick={handleLogOut}>
+          <Link className="nav-link" to="/" onClick={handleLogOut}>
             LOG OUT
           </Link>
           {/* <span className="navbar-text">{user.name}</span> */}

@@ -9,25 +9,28 @@ export default function AuthPage({ setUser }) {
   const [showSignUp, setShowSignUp] = useState(false);
 
   return (
-    <div className="welcome-page">
-      <h1>Welcome to Our Website!</h1>
-      <p>Discover amazing destinations.</p>
-      <div className="auth-buttons">
-        <button
-          className="auth-button"
-          onClick={() => setShowSignUp(!showSignUp)}
-        >
-          {showSignUp ? "Log In" : "Sign Up"}
-        </button>
-        {showSignUp ? (
-          <SignUpForm setUser={setUser} />
-        ) : (
-          <LoginForm setUser={setUser} />
-        )}
+    <>
+      <div className="welcome-page">
+        <img src="/logoPurpleBackgr.png" alt="Logo" className="logo-image1" />
+        <h1>Welcome to Our Website!</h1>
+        <p>Discover amazing destinations.</p>
+        <div className="auth-buttons">
+          <button
+            //   className="auth-button"
+            onClick={() => setShowSignUp(!showSignUp)}
+          >
+            {showSignUp ? "Log In" : "Sign Up"}
+          </button>
+          {showSignUp ? (
+            <SignUpForm setUser={setUser} />
+          ) : (
+            <LoginForm setUser={setUser} />
+          )}
+        </div>
+        <Link to="/about">
+          <button>Learn More</button>
+        </Link>
       </div>
-      <Link to="/about">
-        <button className="about-button">Learn More</button>
-      </Link>
-    </div>
+    </>
   );
 }

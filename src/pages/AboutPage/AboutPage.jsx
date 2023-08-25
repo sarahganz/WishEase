@@ -21,7 +21,7 @@ const AboutPage = () => {
         creating it!
       </p>
       <Link to="/">
-        <button className="back-button">Back to Home</button>
+        <button>Back to Home</button>
       </Link>
     </div>
   );
