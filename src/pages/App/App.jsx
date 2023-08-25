@@ -7,8 +7,11 @@ import WishListPage from "../WishListPage/WishListPage";
 import AchievedWishesPage from "../AchievedWishesPage/AchievedWishesPage";
 import AchievedWishDetailsPage from "../AchievedWishDetailsPage/AchievedWishDetailsPage";
 import HomePage from "../HomePage/HomePage";
+import AboutPage from "../AboutPage/AboutPage";
+import WelcomePage from "../WelcomePage/WelcomePage";
 import NavBar from "../../components/NavBar/NavBar";
 import AWS from "aws-sdk";
+import { set } from "mongoose";
 
 AWS.config.update({
   accessKeyId: process.env.AWS_ACCESS_KEY_ID,
@@ -34,7 +37,11 @@ export default function App() {
           </Routes>
         </>
       ) : (
-        <AuthPage setUser={setUser} />
+        <Routes>
+          <Route path="/" element={<WelcomePage setUser={setUser} />} />
+          <Route path="/about" element={<AboutPage />} />
+          {/* <AuthPage setUser={setUser} /> */}
+        </Routes>
       )}
     </main>
   );
