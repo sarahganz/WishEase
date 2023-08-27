@@ -70,10 +70,15 @@ h1 {
   max-height: 400px;
   object-fit: cover;
   margin: 10px;
+  border: 3px solid #decfd3;
 }
 
 @media (max-width: 768px) {
   .diary-image {
-    max-height: 250px; /* Adjust the max-height for smaller screens */
+    max-height: 250px;
   }
+}
+
+.diary-image:hover {
+  opacity: 0.5;
 }

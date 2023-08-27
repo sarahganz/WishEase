@@ -14,9 +14,7 @@ export default function WishListPage() {
   });
 
   useEffect(() => {
-    // console.log("Fetching wishlist data...");
     fetchWishlist();
-    // fetchAchievedWishes();
   }, []);
 
   const fetchWishlist = async () => {
@@ -28,17 +26,6 @@ export default function WishListPage() {
       console.error("Error fetching wishlist:", error);
     }
   };
-
-  //   const fetchAchievedWishes = async () => {
-  //     try {
-  //       // Fetch achieved wishes data from the server
-  //       // You need to implement this function in your usersAPI
-  //       const response = await usersAPI.getAchievedWishes();
-  //       setAchievedWishes(response.data.achievedWishes);
-  //     } catch (error) {
-  //       console.error("Error fetching achieved wishes:", error);
-  //     }
-  //   };
 
   const handleCheckboxChange = async (itemId) => {
     try {
@@ -54,10 +41,7 @@ export default function WishListPage() {
   };
 
   const handleAddDestination = async () => {
-    console.log("Adding destination:", newDestination); // Log the data
-
-    // console.log("Country:", newDestination.country);
-    // console.log("State:", newDestination.state);
+    console.log("Adding destination:", newDestination);
     try {
       if (!newDestination.country || !newDestination.state) {
         console.error("Country and state are required.");
@@ -65,8 +49,8 @@ export default function WishListPage() {
       }
 
       await usersAPI.addToWishlist(newDestination);
-      setNewDestination({ country: "", state: "" }); // Clear the inputs
-      fetchWishlist(); // Refresh the wishlist
+      setNewDestination({ country: "", state: "" });
+      fetchWishlist();
     } catch (error) {
       console.error("Error adding destination:", error);
     }
@@ -86,24 +70,6 @@ export default function WishListPage() {
 
   return (
     <div>
-      <h2>Your Wishlist</h2>
-      <ul>
-        {wishlist.map((item) => (
-          <li key={item._id}>
-            <input
-              type="checkbox"
-              onChange={() => handleCheckboxChange(item._id)}
-              disabled={item.achieved}
-              checked={item.achieved}
-            />
-            Country: {item.country}, State: {item.state}
-            <button onClick={() => handleDeleteDestination(item._id)}>
-              Delete
-            </button>
-          </li>
-        ))}
-      </ul>
-
       <div>
         <h2>Add a Destination to Wishlist</h2>
         <input
@@ -131,17 +97,21 @@ export default function WishListPage() {
         />
         <button onClick={handleAddDestination}>Add</button>
       </div>
-
-      {/* <h2>Achieved Wishes</h2>
+      <h2>Your Wishlist</h2>
       <ul>
-        {wishlist
-          .filter((item) => item.achieved)
-          .map((item) => (
-            <li key={item._id}>
-              Country: {item.country}, State: {item.state}
-            </li>
-          ))}
-      </ul> */}
+        {wishlist.map((item) => (
+          <li key={item._id}>
+            <input
+              type="checkbox"
+              onChange={() => handleCheckboxChange(item._id)}
+              disabled={item.achieved}
+              checked={item.achieved}
+            />
+            Country: {item.country}, State: {item.state}
+            <button onClick={() => handleDeleteDestination(item._id)}>X</button>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
