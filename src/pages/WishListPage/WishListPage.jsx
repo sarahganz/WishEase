@@ -1,13 +1,9 @@
-// WishListPage.jsx
 import React, { useState, useEffect } from "react";
-// import { getUser } from "../../utilities/users-service";
 import * as usersAPI from "../../utilities/users-api";
+import "./WishListPage.css"; // Import your custom CSS for additional styling
 
 export default function WishListPage() {
-  //   const user = getUser();
   const [wishlist, setWishlist] = useState([]);
-  const [achievedWishes, setAchievedWishes] = useState([]);
-
   const [newDestination, setNewDestination] = useState({
     country: "",
     state: "",
@@ -20,7 +16,6 @@ export default function WishListPage() {
   const fetchWishlist = async () => {
     try {
       const wishlist = await usersAPI.getWishlist();
-      console.log("Fetched wishlist:", wishlist);
       setWishlist(wishlist);
     } catch (error) {
       console.error("Error fetching wishlist:", error);
@@ -41,7 +36,6 @@ export default function WishListPage() {
   };
 
   const handleAddDestination = async () => {
-    console.log("Adding destination:", newDestination);
     try {
       if (!newDestination.country || !newDestination.state) {
         console.error("Country and state are required.");
@@ -58,7 +52,6 @@ export default function WishListPage() {
 
   const handleDeleteDestination = async (itemId) => {
     try {
-      console.log("Deleting destination:", itemId);
       await usersAPI.deleteFromWishlist(itemId);
       setWishlist((prevWishlist) =>
         prevWishlist.filter((item) => item._id !== itemId)
@@ -69,10 +62,11 @@ export default function WishListPage() {
   };
 
   return (
-    <div>
-      <div>
+    <div className="wishlist-container">
+      <div className="add-destination">
         <h2>Add a Destination to Wishlist</h2>
         <input
+          className="space"
           type="text"
           placeholder="Country"
           value={newDestination.country}
@@ -83,8 +77,8 @@ export default function WishListPage() {
             }))
           }
         />
-
         <input
+          className="space"
           type="text"
           placeholder="State"
           value={newDestination.state}
@@ -95,20 +89,36 @@ export default function WishListPage() {
             }))
           }
         />
-        <button onClick={handleAddDestination}>Add</button>
+        <button className="add-button space" onClick={handleAddDestination}>
+          Add
+        </button>
       </div>
-      <h2>Your Wishlist</h2>
-      <ul>
+
+      <ul className="wishlist">
+        <br />
+        <h2>Your Wishlist</h2>
+        <li className="wishlist-header">
+          <span className="wishlist-header-itema">Country</span>
+          <span className="wishlist-header-itemb">State</span>
+        </li>
         {wishlist.map((item) => (
-          <li key={item._id}>
+          <li key={item._id} className="wishlist-item">
             <input
               type="checkbox"
               onChange={() => handleCheckboxChange(item._id)}
               disabled={item.achieved}
               checked={item.achieved}
             />
-            Country: {item.country}, State: {item.state}
-            <button onClick={() => handleDeleteDestination(item._id)}>X</button>
+            <span className="wishlist-details">
+              <span className="country-column">{item.country}</span>
+              <span className="state-column">{item.state}</span>
+            </span>
+            <button
+              className="delete-button"
+              onClick={() => handleDeleteDestination(item._id)}
+            >
+              x
+            </button>
           </li>
         ))}
       </ul>

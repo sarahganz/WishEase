@@ -46,9 +46,6 @@
 }
 
 @media (min-width: 768px) {
-  .navbar-nav {
-    /* padding-left: 15px; */
-  }
   .navbar-text {
     font-size: 18px;
   }
