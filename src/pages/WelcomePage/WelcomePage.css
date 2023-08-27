@@ -1,34 +1,46 @@
-/* WelcomePage.css */
 .welcome-page {
+  border-radius: border-box;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  height: 85vh;
   background-color: #69626d;
 }
 
-.welcome-page h1 {
+.welcome-message {
   font-size: 2.5rem;
-  color: #deced3;
+  color: #decfd3;
   margin-bottom: 1rem;
 }
+@media only screen and (max-width: 400px) {
+  .welcome-message {
+    font-size: 1.5rem;
+  }
+  .welcome-page {
+    height: 100vh;
+    margin-top: -3rem;
+  }
+}
 
-.welcome-page p {
+.subtitle {
   font-size: 1.2rem;
-  color: #666;
+  color: #c1a9af;
   margin-bottom: 2rem;
 }
 
-.auth-buttons {
+.welcomeButtons {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   gap: 1rem;
 }
 
-.logo-image1 {
-  width: 500px;
-  max-width: 800px;
-  height: 200px;
-  max-height: 200px;
-  /* object-fit: contain; */
+.page-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  height: auto;
+  overflow: hidden;
 }

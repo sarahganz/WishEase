@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import { getUser } from "../../utilities/users-service";
 import "./App.css";
-import AuthPage from "../AuthPage/AuthPage";
 import WishListPage from "../WishListPage/WishListPage";
 import AchievedWishesPage from "../AchievedWishesPage/AchievedWishesPage";
 import AchievedWishDetailsPage from "../AchievedWishDetailsPage/AchievedWishDetailsPage";
@@ -10,6 +9,7 @@ import HomePage from "../HomePage/HomePage";
 import AboutPage from "../AboutPage/AboutPage";
 import WelcomePage from "../WelcomePage/WelcomePage";
 import NavBar from "../../components/NavBar/NavBar";
+import NavBarWelcome from "../../components/NavBar/NavBarWelcome";
 import Footer from "../../components/Footer/Footer";
 import AWS from "aws-sdk";
 import { set } from "mongoose";
@@ -39,11 +39,14 @@ export default function App() {
           <Footer />
         </>
       ) : (
-        <Routes>
-          <Route path="/" element={<WelcomePage setUser={setUser} />} />
-          <Route path="/about" element={<AboutPage />} />
-          {/* <AuthPage setUser={setUser} /> */}
-        </Routes>
+        <>
+          <NavBarWelcome user={user} setUser={setUser} />
+          <Routes>
+            <Route path="/" element={<WelcomePage setUser={setUser} />} />
+            <Route path="/about" element={<AboutPage />} />
+          </Routes>
+          <Footer />
+        </>
       )}
     </main>
   );

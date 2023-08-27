@@ -13,7 +13,7 @@ code {
 }
 
 /* CSS Custom Properties */
-:root {
+/* :root {
   --white: #ffffff;
   --tan-1: #fbf9f6;
   --tan-2: #e7e2dd;
@@ -22,7 +22,7 @@ code {
   --orange: #f67f00;
   --text-light: #968c84;
   --text-dark: #615954;
-}
+} */
 
 *,
 *:before,
@@ -37,7 +37,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: var(--tan-4);
+  background-color: #cbbeb3;
   padding: 2vmin;
   height: 100vh;
 }
@@ -85,9 +85,9 @@ code {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-color: var(--tan-1);
-  color: var(--text-dark);
-  border: 0.1vmin solid var(--tan-3);
+  background-color: #decfd3;
+  color: #69626d;
+  border: 0.1vmin solid #c1a9af;
   border-radius: 1vmin;
   padding: 0.6vmin;
   text-align: center;
@@ -96,13 +96,13 @@ code {
 
 .form-container {
   padding: 3vmin;
-  background-color: var(--tan-1);
-  border: 0.1vmin solid var(--tan-3);
+  background-color: #decfd3;
+  border: 0.1vmin solid #c1a9af;
   border-radius: 1vmin;
 }
 
 p.error-message {
-  color: var(--orange);
+  color: #cbbeb3;
   text-align: center;
 }
 
@@ -110,7 +110,7 @@ form {
   display: grid;
   grid-template-columns: 1fr 3fr;
   gap: 1.25vmin;
-  color: var(--text-light);
+  color: #69626d;
 }
 
 label {
@@ -122,18 +122,18 @@ label {
 input {
   padding: 1vmin;
   font-size: 2vmin;
-  border: 0.1vmin solid var(--tan-3);
+  border: 0.1vmin solid #69626d;
   border-radius: 0.5vmin;
   color: var(--text-dark);
   background-image: none !important; /* prevent lastpass */
   outline: none;
 }
 
-input:focus {
+/* input:focus {
   border-color: var(--orange);
-}
+} */
 
-button,
+/* button,
 a.button {
   margin: 1vmin;
   padding: 1vmin;
@@ -147,7 +147,7 @@ a.button {
   border-radius: 0.5vmin;
   outline: none;
   cursor: pointer;
-}
+} */
 
 button.btn-sm {
   font-size: 1.5vmin;
@@ -162,10 +162,36 @@ button.btn-xs {
 button:disabled,
 form:invalid button[type="submit"] {
   cursor: not-allowed;
-  background-color: var(--tan-4);
+  background-color: #c1a9af;
 }
 
 button[type="submit"] {
   grid-column: span 2;
   margin: 1vmin 0 0;
+}
+
+@media (max-width: 767.98px) {
+  .form-container {
+    padding: 5%;
+    border-radius: 3vmin;
+    width: 80vw;
+  }
+
+  p.error-message {
+    font-size: 3vmin;
+  }
+
+  form {
+    grid-template-columns: 1fr; /* Single column layout on smaller screens */
+    gap: 2.5vmin;
+  }
+
+  label {
+    font-size: 3vmin;
+  }
+
+  input {
+    padding: 2vmin;
+    font-size: 3vmin;
+  }
 }

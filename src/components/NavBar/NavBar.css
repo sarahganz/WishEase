@@ -5,7 +5,23 @@
   padding: 0;
   margin: 0;
   border: none;
-  padding-left: 10px;
+  padding-left: 2%;
+  padding-right: 4%;
+  padding-top: 1%;
+  right: 0;
+  /* height: auto; */
+}
+
+.nav-link {
+  color: #c1a9af;
+}
+.navbar-nav .nav-link.active {
+  color: #c1a9af;
+  font-weight: bold;
+}
+
+.nav-link:hover {
+  color: #decfd3;
 }
 
 .container {
@@ -13,15 +29,21 @@
   padding: 0;
 }
 
-nav.navbar.sticky-top.navbar-expand-lg {
+/* nav.navbar.sticky-top.navbar-expand-lg {
   padding-right: 0;
   margin-left: 0;
+  right: 0;
 }
+nav.navbar.navbar-expand-lg {
+  padding-right: 0;
+  margin-left: 0;
+  right: 0;
+} */
 
 /* Adjust color and styles for larger screens */
-@media (min-width: 768px) {
+/* @media (min-width: 768px) {
   .navbar-nav {
-    color: #deced3;
+    color: #decfd3;
   }
   .nav-link {
     color: #c1a9af;
@@ -33,22 +55,33 @@ nav.navbar.sticky-top.navbar-expand-lg {
     color: #cbbeb3;
   }
   .nav-link:hover {
-    color: #deced3;
+    color: #decfd3;
   }
   .navbar-nav .nav-link.active,
   .navbar-nav {
-    color: #deced3;
+    color: #decfd3;
   }
   .nav-link.active {
     color: white;
     font-weight: bold;
   }
-}
+} */
 
 .logo-image {
   width: 100%; /* Makes the image width 100% of its container */
   max-width: 200px; /* Set a maximum width for larger screens */
-  margin-right: 5px;
+  /* margin-right: 5px; */
+}
+
+.logo-image2 {
+  width: 100%;
+  max-width: 300px;
+}
+@media (max-width: 768px) {
+  .logo-image2 {
+    width: 100%;
+    max-width: 200px;
+  }
 }
 
 @media (min-width: 768px) {
