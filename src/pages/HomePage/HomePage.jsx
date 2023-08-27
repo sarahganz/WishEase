@@ -57,13 +57,14 @@ const HomePage = ({ user }) => {
           Explore your achieved wish destinations and relive the moments through
           photos.
         </p>
+        <br />
         <Link to="/wishlist">
           <button>Add New Wish Destination</button>
         </Link>
       </div>
       {diaryEntriesWithPhotos.length > 0 && (
         <div className="carousel-container">
-          <h2>Relive Your Journey</h2>
+          <br /> <h2>Relive Your Journey</h2>
           <Carousel>
             {diaryEntriesWithPhotos.map((diary) => (
               <Carousel.Item key={diary._id}>
