@@ -9,7 +9,6 @@ export default function WelcomePage({ setUser }) {
 
   return (
     <div className="page-container">
-      <nav className="navbar"> {/* Your Navbar Component Here */}</nav>
       <div className="welcome-page">
         <h1 className="welcome-message">
           Turning Dreams into Reality, One Wish at a Time.

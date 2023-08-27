@@ -27,6 +27,15 @@
   border-radius: 50%;
   border: 3px solid #c1a9af;
   margin-bottom: 1rem;
+  animation: profileAnimation 3s ease-in-out;
+}
+@keyframes profileAnimation {
+  0% {
+    width: 50px;
+  }
+  100% {
+    width: 200px;
+  }
 }
 
 .creator-info {

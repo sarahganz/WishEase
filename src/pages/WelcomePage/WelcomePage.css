@@ -6,20 +6,39 @@
   justify-content: center;
   height: 85vh;
   background-color: #69626d;
+  text-align: center;
 }
 
 .welcome-message {
   font-size: 2.5rem;
   color: #decfd3;
   margin-bottom: 1rem;
+  animation: welcomeAnimation 3s ease-in-out;
 }
 @media only screen and (max-width: 400px) {
   .welcome-message {
     font-size: 1.5rem;
+    animation: welcomeAnimation2 3s ease-in-out;
   }
   .welcome-page {
     height: 100vh;
     margin-top: -3rem;
+  }
+  @keyframes welcomeAnimation2 {
+    0% {
+      font-size: 0.5rem;
+    }
+    100% {
+      font-size: 1.5rem;
+    }
+  }
+}
+@keyframes welcomeAnimation {
+  0% {
+    font-size: 1.5rem;
+  }
+  100% {
+    font-size: 2.5rem;
   }
 }
 
