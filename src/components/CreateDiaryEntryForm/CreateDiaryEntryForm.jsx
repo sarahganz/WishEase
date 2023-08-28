@@ -64,68 +64,82 @@ function CreateDiaryEntryForm({
   };
 
   return (
-    <form encType="multipart/form-data" onSubmit={handleSubmit}>
-      <label>From Date:</label>
-      <input
-        type="date"
-        value={localFormData.fromDate}
-        onChange={(e) =>
-          setLocalFormData({ ...localFormData, fromDate: e.target.value })
-        }
-      />
-
-      <label>To Date:</label>
-      <input
-        type="date"
-        value={localFormData.toDate}
-        onChange={(e) =>
-          setLocalFormData({ ...localFormData, toDate: e.target.value })
-        }
-      />
-
-      <label>Restaurants:</label>
-      <input
-        type="text"
-        value={localFormData.restaurants}
-        onChange={(e) =>
-          setLocalFormData({ ...localFormData, restaurants: e.target.value })
-        }
-      />
-
-      <label>Information:</label>
-      <textarea
-        value={localFormData.information}
-        onChange={(e) =>
-          setLocalFormData({ ...localFormData, information: e.target.value })
-        }
-      />
-
-      <label>Photos:</label>
-      <div className="file-input-container">
+    <div className="diary-form-container">
+      <h4 className="create-entry-heading">Create Diary Entry</h4>
+      <form
+        encType="multipart/form-data"
+        onSubmit={handleSubmit}
+        className="diary-form"
+      >
+        <label>From Date:</label>
         <input
-          type="file"
-          accept="image/*"
-          multiple
-          onChange={handlePhotoChange}
-          id="file-input"
+          type="date"
+          value={localFormData.fromDate}
+          onChange={(e) =>
+            setLocalFormData({ ...localFormData, fromDate: e.target.value })
+          }
+          className="short-input" // Add a class
         />
-        <label htmlFor="file-input" className="file-input-label">
-          Choose Files
-        </label>
-      </div>
-      {localFormData.photos.length > 0 && (
-        <div>
-          <h4>Selected Photos:</h4>
-          <ul>
-            {localFormData.photos.map((photo, index) => (
-              <li key={index}>{photo.name}</li>
-            ))}
-          </ul>
-        </div>
-      )}
 
-      <button type="submit">Create Diary Entry</button>
-    </form>
+        <label>To Date:</label>
+        <input
+          type="date"
+          value={localFormData.toDate}
+          onChange={(e) =>
+            setLocalFormData({ ...localFormData, toDate: e.target.value })
+          }
+          className="short-input" // Add a class
+        />
+
+        <label>Restaurants:</label>
+        <textarea
+          value={localFormData.restaurants}
+          onChange={(e) =>
+            setLocalFormData({ ...localFormData, restaurants: e.target.value })
+          }
+        />
+
+        <label>Information:</label>
+        <textarea
+          value={localFormData.information}
+          onChange={(e) =>
+            setLocalFormData({ ...localFormData, information: e.target.value })
+          }
+        />
+
+        <label>Photos:</label>
+        <div className="file-input-container">
+          <input
+            type="file"
+            accept="image/*"
+            multiple
+            onChange={handlePhotoChange}
+            id="file-input"
+          />
+          <label htmlFor="file-input" className="file-input-label">
+            Choose Files
+          </label>
+        </div>
+        {localFormData.photos.length > 0 && (
+          <div className="selected-photos">
+            <p>
+              {" "}
+              <strong>Selected Photos:</strong>
+            </p>
+            <ul>
+              {localFormData.photos.map((photo, index) => (
+                <li key={index}>{photo.name}</li>
+              ))}
+            </ul>
+          </div>
+        )}
+        <div className="submit-button-container">
+          <button type="submit" className="submit-button">
+            Create Diary Entry
+          </button>
+        </div>
+      </form>
+    </div>
   );
 }
 

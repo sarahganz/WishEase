@@ -72,11 +72,10 @@ function AchievedWishDetailsPage({ user }) {
     <div className="achieved-wish-details">
       {achievedWish && (
         <h2>
-          {achievedWish.city} in {achievedWish.country}
+          {achievedWish.city} - {achievedWish.country}
         </h2>
       )}
 
-      <h3>Create Diary Entry</h3>
       <CreateDiaryEntryForm
         user={user}
         destination={achievedWish}
