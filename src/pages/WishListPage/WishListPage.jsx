@@ -81,7 +81,7 @@ export default function WishListPage() {
           className="space"
           type="text"
           placeholder="City"
-          value={newDestination.stcityate}
+          value={newDestination.city}
           onChange={(e) =>
             setNewDestination((prevDestination) => ({
               ...prevDestination,
