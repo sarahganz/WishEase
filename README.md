@@ -18,8 +18,6 @@ WishEase allows users to create and manage a travel diary where they can documen
 
 ## Challenging Code Parts
 
-Share any particularly challenging or interesting code snippets and explain how you overcame challenges.
-
 ```javascript
 
 ```
