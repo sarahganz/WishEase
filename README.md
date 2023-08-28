@@ -8,14 +8,6 @@ WishEase allows users to create and manage a travel diary where they can documen
 
 ## Website Images
 
-
-![Welcome](/public/photos/welcome.png)
-![AboutPage](/public/photos/about.png)
-![home](/public/photos/home.png)
-![wishlist](/public/photos/wishlist.png)
-![diary](/public/photos/diary.png)
-![details](/public/photos/details.png)
-
 ## Technologies Used
 
 - Frontend: React.js
