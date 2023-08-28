@@ -27,6 +27,7 @@ WishEase allows users to create and manage a travel diary where they can documen
 Check out the live website here: [WishEase](https://wishease-edf811998b26.herokuapp.com/)
 
 ## Next Steps
+
 As WishEase continues to evolve, we have several exciting features and improvements planned to enhance your experience:
 
 - Enhanced Photo Gallery: We aim to provide you with a comprehensive photo gallery, where you can easily view and relive your travel memories through a stunning collection of photos.
