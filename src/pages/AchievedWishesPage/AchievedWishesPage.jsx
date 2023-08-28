@@ -35,7 +35,7 @@ export default function AchievedWishesPage() {
             <span className="country-column">{item.country}</span>
             <span className="state-column">{item.state}</span>
             <Link to={`/achieved-wishes/${item._id}`} className="link-button">
-              View Details
+              <button>View Details</button>
             </Link>
           </li>
         ))}
