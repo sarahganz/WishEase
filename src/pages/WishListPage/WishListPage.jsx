@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import * as usersAPI from "../../utilities/users-api";
-import "./WishListPage.css"; // Import your custom CSS for additional styling
+import "./WishListPage.css";
 
 export default function WishListPage() {
   const [wishlist, setWishlist] = useState([]);
   const [newDestination, setNewDestination] = useState({
     country: "",
-    state: "",
+    city: "",
   });
 
   useEffect(() => {
@@ -37,13 +37,13 @@ export default function WishListPage() {
 
   const handleAddDestination = async () => {
     try {
-      if (!newDestination.country || !newDestination.state) {
-        console.error("Country and state are required.");
+      if (!newDestination.country || !newDestination.city) {
+        console.error("Country and city are required.");
         return;
       }
 
       await usersAPI.addToWishlist(newDestination);
-      setNewDestination({ country: "", state: "" });
+      setNewDestination({ country: "", city: "" });
       fetchWishlist();
     } catch (error) {
       console.error("Error adding destination:", error);
@@ -80,12 +80,12 @@ export default function WishListPage() {
         <input
           className="space"
           type="text"
-          placeholder="State"
-          value={newDestination.state}
+          placeholder="City"
+          value={newDestination.stcityate}
           onChange={(e) =>
             setNewDestination((prevDestination) => ({
               ...prevDestination,
-              state: e.target.value,
+              city: e.target.value,
             }))
           }
         />
@@ -99,7 +99,7 @@ export default function WishListPage() {
         <h2>Your Wishlist</h2>
         <li className="wishlist-header">
           <span className="wishlist-header-itema">Country</span>
-          <span className="wishlist-header-itemb">State</span>
+          <span className="wishlist-header-itemb">City</span>
         </li>
         {wishlist.map((item) => (
           <li key={item._id} className="wishlist-item">
@@ -111,7 +111,7 @@ export default function WishListPage() {
             />
             <span className="wishlist-details">
               <span className="country-column">{item.country}</span>
-              <span className="state-column">{item.state}</span>
+              <span className="city-column">{item.city}</span>
             </span>
             <button
               className="delete-button"

@@ -76,7 +76,7 @@ function AchievedWishDetailsPage({ user }) {
       {achievedWish && (
         <div>
           <p>Country: {achievedWish.country}</p>
-          <p>State: {achievedWish.state}</p>
+          <p>City: {achievedWish.city}</p>
         </div>
       )}
       <h2>Create Diary Entry</h2>

@@ -27,13 +27,13 @@ export default function AchievedWishesPage() {
         <span className="achieved-wishes-header-item country-column">
           Country
         </span>
-        <span className="achieved-wishes-header-item state-column">State</span>
+        <span className="achieved-wishes-header-item city-column">City</span>
       </h2>
       <ul>
         {achievedWishes.map((item) => (
           <li key={item._id} className="achieved-wishes-item">
             <span className="country-column">{item.country}</span>
-            <span className="state-column">{item.state}</span>
+            <span className="city-column">{item.city}</span>
             <Link to={`/achieved-wishes/${item._id}`} className="link-button">
               <button>View Details</button>
             </Link>

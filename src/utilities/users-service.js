@@ -60,7 +60,7 @@ export function checkToken() {
 export async function markAsAchieved(itemId) {
   try {
     const response = await usersAPI.markAsAchieved(itemId);
-    return response; // You might return additional data from the response
+    return response;
   } catch (error) {
     throw error;
   }
@@ -69,9 +69,7 @@ export async function markAsAchieved(itemId) {
 export async function getWishlist() {
   try {
     const response = await usersAPI.getWishlist();
-    // console.log("response.wishlist from users-service: ");
-    // console.log(response.wishlist);
-    return response.wishlist; // Return the wishlist array from the response
+    return response.wishlist;
   } catch (error) {
     throw error;
   }
@@ -80,7 +78,7 @@ export async function getWishlist() {
 export async function addToWishlist(newDestination) {
   try {
     const response = await usersAPI.addToWishlist(newDestination);
-    return response; // You might return additional data from the response
+    return response;
   } catch (error) {
     throw error;
   }
@@ -89,7 +87,7 @@ export async function addToWishlist(newDestination) {
 export async function getAchievedWishes() {
   try {
     const response = await usersAPI.getAchievedWishes();
-    return response; // Return the achievedWishes array from the response
+    return response;
   } catch (error) {
     throw error;
   }
@@ -98,14 +96,10 @@ export async function getAchievedWishes() {
 export async function fetchAchievedWishDetails(id) {
   try {
     const response = await usersAPI.getAchievedWishDetails(id);
-    // console.log("response from users-service: ");
-    // console.log(response);
-
-    if (response && response.country && response.state) {
-      // console.log("Fetched achieved wish details:", response);
+    if (response && response.country && response.city) {
       return response;
     } else {
-      console.log("Country and/or state not found in response.");
+      console.log("Country and/or city not found in response.");
       return null;
     }
   } catch (error) {
@@ -117,7 +111,7 @@ export async function fetchAchievedWishDetails(id) {
 export async function fetchDiaryEntries(destinationId) {
   const response = await sendRequest(
     `/api/diary?destination=${destinationId}`,
-    "GET" // Pass the HTTP method as a string
+    "GET"
   );
   return response;
 }
@@ -125,10 +119,6 @@ export async function fetchDiaryEntries(destinationId) {
 export async function deleteFromWishlist(itemId) {
   try {
     const response = await axios.delete(`${BASE_URL}/wishlist/${itemId}`);
-    console.log("response from users-service: ");
-    console.log(response);
-    console.log("response.data from users-service: ");
-    console.log(response.data);
     return response.data;
   } catch (error) {
     throw error.response.data;

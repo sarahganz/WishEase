@@ -14,10 +14,10 @@ function CreateDiaryEntryForm({
   const [localFormData, setLocalFormData] = useState(initialFormData);
 
   const handlePhotoChange = (e) => {
-    const newPhotos = Array.from(e.target.files); // Convert FileList to an array
+    const newPhotos = Array.from(e.target.files);
     setLocalFormData((prevData) => ({
       ...prevData,
-      photos: [...prevData.photos, ...newPhotos], // Append new photos to existing list
+      photos: [...prevData.photos, ...newPhotos],
     }));
   };
 

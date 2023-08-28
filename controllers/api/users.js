@@ -103,7 +103,7 @@ async function getWishlist(req, res) {
         return {
           _id: destination._id,
           country: destination.country,
-          state: destination.state,
+          city: destination.city,
           achieved: destination.achieved,
           // Include other properties if necessary
         };
@@ -123,7 +123,7 @@ async function getWishlist(req, res) {
 
 async function addToWishlist(req, res) {
   try {
-    const { country, state, achieved } = req.body;
+    const { country, city, achieved } = req.body;
 
     // Find the user
     const user = await User.findById(req.user._id);
@@ -132,8 +132,8 @@ async function addToWishlist(req, res) {
     }
 
     // Create a new Destination object
-    console.log("Creating new destination:", { country, state });
-    const newDestination = new Destination({ country, state });
+    console.log("Creating new destination:", { country, city });
+    const newDestination = new Destination({ country, city });
 
     // Save the new Destination to the database
     await newDestination.save();
@@ -167,7 +167,7 @@ async function getAchievedWishes(req, res) {
         return {
           _id: destination._id,
           country: destination.country,
-          state: destination.state,
+          city: destination.city,
           achieved: destination.achieved,
           // Include other properties if necessary
         };
