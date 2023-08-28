@@ -29,7 +29,7 @@ export async function markAsAchieved(itemId) {
 export async function getWishlist() {
   try {
     const response = await sendRequest(`${BASE_URL}/wishlist`, "GET");
-    return response.wishlist; // Return the wishlist array from the response
+    return response.wishlist;
   } catch (error) {
     throw error;
   }
@@ -42,7 +42,7 @@ export async function addToWishlist(newDestination) {
       "POST",
       newDestination
     );
-    return response; // You might return additional data from the response
+    return response;
   } catch (error) {
     throw error;
   }
@@ -74,7 +74,7 @@ export async function deleteFromWishlist(itemId) {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`, // Include the token in the Authorization header
+      Authorization: `Bearer ${token}`,
     },
   });
 
