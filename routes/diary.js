@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const ensureLoggedIn = require("../config/ensureLoggedIn");
 const diaryCtrl = require("../controllers/diary-controller");
-const { uploadImage } = require("../middleware/upload2");
+const { uploadImage } = require("../middleware/upload");
 
 // GET /api/diary?destination=:destinationId
 router.get("/", ensureLoggedIn, diaryCtrl.getDiaryEntries);
