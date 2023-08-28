@@ -1,0 +1,65 @@
+/* AchievedWishesPage.css */
+.achieved-wishes-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #decfd3;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  color: #69626d;
+}
+
+.achieved-wishes-header {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+}
+
+.achieved-wishes-header-item {
+  flex: 1;
+  text-align: center;
+}
+
+.achieved-wishes-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.country-column,
+.state-column {
+  flex: 1;
+  margin-right: 10px;
+}
+
+.achieved-wishes-header {
+  margin-right: 120px;
+  margin-left: 30px;
+}
+
+.link-button {
+  background-color: #69626d;
+  color: #decfd3;
+  border: none;
+  padding: 8px 15px;
+  cursor: pointer;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.link-button:hover {
+  background-color: #decfd3;
+  color: #69626d;
+}
+
+/* Media Query for smaller screens */
+@media (max-width: 768px) {
+  .country-column,
+  .state-column {
+    flex: 1;
+    margin-right: 5px;
+  }
+}
