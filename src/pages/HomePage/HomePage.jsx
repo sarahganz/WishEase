@@ -14,7 +14,6 @@ const HomePage = ({ user }) => {
     const fetchData = async () => {
       try {
         const response = await usersService.getAchievedWishes();
-        console.log("Fetched achieved destinations response:", response);
         await setAchievedDestinations(response);
         await fetchDestinationDetailsAndPhotos(response);
       } catch (error) {
@@ -40,7 +39,6 @@ const HomePage = ({ user }) => {
 
         const allDiariesWithPhotos = await Promise.all(promises);
         setDiaryEntriesWithPhotos(allDiariesWithPhotos.flat());
-        console.log("All photos:", allPhotos);
       } catch (error) {
         console.error("Error fetching diary entries:", error);
       }

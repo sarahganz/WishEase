@@ -5,12 +5,7 @@ async function createDiaryEntry(req, res) {
     const { fromDate, toDate, restaurants, information, destination } =
       req.body;
     const user = req.user;
-    console.log("Received user:", user);
-    console.log("Received body:", req.body);
-    console.log("Received files:", req.files);
     const photoUrls = req.files.map((file) => file.location);
-
-    console.log("Creating new diary entry...");
     const newDiaryEntry = new Diary({
       fromDate,
       toDate,
@@ -20,10 +15,7 @@ async function createDiaryEntry(req, res) {
       user: user._id,
       destination,
     });
-
-    console.log("Saving diary entry...");
     const savedDiaryEntry = await newDiaryEntry.save();
-    console.log("Diary entry saved:", savedDiaryEntry);
     res.status(201).json(savedDiaryEntry);
   } catch (error) {
     console.error("Error creating diary entry:", error);

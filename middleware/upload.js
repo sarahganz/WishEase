@@ -19,7 +19,6 @@ const upload = multer({
     bucket: "wishease",
     acl: "public-read",
     key: function (req, file, cb) {
-      console.log("Uploading file:", file.originalname);
       cb(null, `diary-entries/${Date.now().toString()}-${file.originalname}`);
     },
   }),

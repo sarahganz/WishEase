@@ -19,7 +19,6 @@ function AchievedWishDetailsPage({ user }) {
   useEffect(() => {
     const fetchDetails = async () => {
       const response = await usersService.fetchAchievedWishDetails(id);
-      console.log("id", id);
       setAchievedWish(response);
     };
 
@@ -63,8 +62,6 @@ function AchievedWishDetailsPage({ user }) {
       setDiaryEntries((prevEntries) =>
         prevEntries.filter((entry) => entry._id !== entryId)
       );
-
-      console.log("Diary entry deleted successfully!");
     } catch (error) {
       console.error("Error deleting diary entry:", error);
     }

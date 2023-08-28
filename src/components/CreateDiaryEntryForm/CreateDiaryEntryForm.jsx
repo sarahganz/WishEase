@@ -23,8 +23,6 @@ function CreateDiaryEntryForm({
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    console.log("Creating diary entry...");
     try {
       const newDiaryEntry = new FormData();
 
@@ -36,10 +34,7 @@ function CreateDiaryEntryForm({
       for (let i = 0; i < localFormData.photos.length; i++) {
         newDiaryEntry.append("photos", localFormData.photos[i]);
       }
-
       newDiaryEntry.append("destination", destination._id);
-
-      console.log("Creating diary entry:", Object.fromEntries(newDiaryEntry));
       const token = localStorage.getItem("token");
       const response = await axios.post("/api/diary", newDiaryEntry, {
         headers: { Authorization: `Bearer ${token}` },

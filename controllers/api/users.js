@@ -16,8 +16,6 @@ module.exports = {
 };
 
 function checkToken(req, res) {
-  // req.user will always be there for you when a token is sent
-  // console.log("req.user", req.user);
   res.json(req.exp);
 }
 
@@ -130,9 +128,6 @@ async function addToWishlist(req, res) {
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
-
-    // Create a new Destination object
-    console.log("Creating new destination:", { country, city });
     const newDestination = new Destination({ country, city });
 
     // Save the new Destination to the database
@@ -141,8 +136,6 @@ async function addToWishlist(req, res) {
     // Add the new Destination's ObjectId to the user's wishlist
     user.wishDestinations.push(newDestination._id);
     await user.save();
-    console.log("User after saving:", user);
-
     res.json({ message: "Destination added to wishlist" });
   } catch (error) {
     console.error("Error adding destination to wishlist:", error);
@@ -221,9 +214,6 @@ async function getAchievedWishDetails(req, res) {
 async function deleteFromWishlist(req, res) {
   try {
     const { itemId } = req.params;
-    console.log("itemId:", itemId);
-    console.log("req.user._id:", req.user._id);
-
     const user = await User.findById(req.user._id);
     if (!user) {
       return res.status(404).json({ message: "User not found" });

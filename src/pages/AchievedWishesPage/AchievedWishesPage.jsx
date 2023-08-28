@@ -13,7 +13,6 @@ export default function AchievedWishesPage() {
   const fetchAchievedWishes = async () => {
     try {
       const response = await usersAPI.getAchievedWishes();
-      console.log("Fetched achieved wishes response:", response);
       setAchievedWishes(response);
     } catch (error) {
       console.error("Error fetching achieved wishes:", error);
