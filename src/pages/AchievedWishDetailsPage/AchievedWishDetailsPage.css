@@ -1,0 +1,70 @@
+.achieved-wish-details {
+  padding: 20px;
+  color: #69626d;
+}
+
+.wish-details {
+  padding: 10px;
+  border: 1px solid #c1a9af;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.diary-entry {
+  list-style: none;
+  padding: 15px;
+
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+.diary-content {
+  background-color: #decfd3;
+  padding: 15px;
+  border: 1px solid #c1a9af;
+  border-radius: 5px;
+}
+
+.diary-entry h4 {
+  margin-top: 0;
+}
+
+.diary-entry p {
+  margin: 0;
+}
+
+.diary-photos {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.diary-photo {
+  max-width: 100%;
+  max-height: 200px;
+  object-fit: cover;
+  border: 1px solid #69626d;
+  border-radius: 5px;
+}
+
+.diary-photo:hover {
+  cursor: pointer;
+}
+
+.diary-photo-container {
+  position: relative;
+}
+
+.date-range {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.diary-entries {
+  border-top: 1px dashed #69626d;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+}

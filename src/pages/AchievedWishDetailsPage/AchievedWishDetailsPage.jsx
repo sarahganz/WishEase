@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import * as usersService from "../../utilities/users-service";
 import CreateDiaryEntryForm from "../../components/CreateDiaryEntryForm/CreateDiaryEntryForm";
+import "./AchievedWishDetailsPage.css"; // Import the CSS file
 
 function AchievedWishDetailsPage({ user }) {
   const { id } = useParams();
@@ -68,15 +69,14 @@ function AchievedWishDetailsPage({ user }) {
   };
 
   return (
-    <div>
-      <h2>Achieved Wish Details</h2>
+    <div className="achieved-wish-details">
       {achievedWish && (
-        <div>
-          <p>Country: {achievedWish.country}</p>
-          <p>City: {achievedWish.city}</p>
-        </div>
+        <h2>
+          {achievedWish.city} in {achievedWish.country}
+        </h2>
       )}
-      <h2>Create Diary Entry</h2>
+
+      <h3>Create Diary Entry</h3>
       <CreateDiaryEntryForm
         user={user}
         destination={achievedWish}
@@ -90,36 +90,43 @@ function AchievedWishDetailsPage({ user }) {
         setFormData={setFormData}
         onNewDiaryEntry={handleNewDiaryEntry}
       />
-      <h2>Diary Entries</h2>
-      <ul>
+      <br />
+      <br />
+      <ul className="diary-entries">
         {diaryEntries.map((entry) => (
-          <li key={entry._id}>
-            <h4>Entry</h4>
-            {entry.fromDate && (
-              <p>From: {new Date(entry.fromDate).toLocaleDateString()}</p>
-            )}
-            {entry.toDate && (
-              <p>To: {new Date(entry.toDate).toLocaleDateString()}</p>
-            )}
-            {entry.restaurants && <p>Restaurants: {entry.restaurants}</p>}
-            {entry.information && <p>Information: {entry.information}</p>}
-
-            {entry.photos && (
-              <div>
-                {/* <h4>Photos:</h4> */}
-                {entry.photos.map((photoUrl, index) => (
-                  <img
-                    key={index}
-                    src={photoUrl}
-                    alt={`Diary entry photo ${index + 1}`}
-                    style={{ maxWidth: "200px", maxHeight: "200px" }}
-                  />
-                ))}
+          <li key={entry._id} className="diary-entry">
+            <div className="diary-content">
+              <div className="date-range">
+                {entry.fromDate && (
+                  <p>{new Date(entry.fromDate).toLocaleDateString()}</p>
+                )}
+                {entry.toDate && (
+                  <p>- {new Date(entry.toDate).toLocaleDateString()}</p>
+                )}
               </div>
-            )}
-            <button onClick={() => handleDeleteDiaryEntry(entry._id)}>
-              Delete
-            </button>
+              {entry.restaurants && <p>Restaurants: {entry.restaurants}</p>}
+              {entry.information && <p>{entry.information}</p>}
+              <br />
+              {entry.photos && (
+                <div className="diary-photos">
+                  {entry.photos.map((photoUrl, index) => (
+                    <img
+                      key={index}
+                      src={photoUrl}
+                      alt={`Diary entry photo ${index + 1}`}
+                      className="diary-photo"
+                    />
+                  ))}
+                </div>
+              )}
+              <br />
+              <button
+                onClick={() => handleDeleteDiaryEntry(entry._id)}
+                className="delete-button"
+              >
+                Delete
+              </button>
+            </div>
           </li>
         ))}
       </ul>
