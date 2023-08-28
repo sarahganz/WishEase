@@ -64,20 +64,22 @@ const HomePage = ({ user }) => {
         <div className="carousel-container">
           <br /> <h2>Relive Your Journey</h2>
           <Carousel>
-            {diaryEntriesWithPhotos.map((diary) => (
-              <Carousel.Item key={diary._id}>
-                <div className="image-container">
-                  {diary.photos.map((photoUrl, index) => (
-                    <img
-                      key={index}
-                      src={photoUrl}
-                      alt={`Image from diary entry on ${diary.date}`}
-                      className="diary-image"
-                    />
-                  ))}
-                </div>
-              </Carousel.Item>
-            ))}
+            {diaryEntriesWithPhotos.map((diary) =>
+              diary.photos.length > 0 ? (
+                <Carousel.Item key={diary._id}>
+                  <div className="image-container">
+                    {diary.photos.map((photoUrl, index) => (
+                      <img
+                        key={index}
+                        src={photoUrl}
+                        alt={`Image from diary entry on ${diary.date}`}
+                        className="diary-image"
+                      />
+                    ))}
+                  </div>
+                </Carousel.Item>
+              ) : null
+            )}
           </Carousel>
         </div>
       )}
