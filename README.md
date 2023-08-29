@@ -13,9 +13,9 @@ WishEase allows users to create and manage a travel diary where they can documen
 ![AboutPage](/public/photos/about.png)
 **About Page:** Dive deeper into Wishease's world. Learn about our vision to make your travel dreams a reality, and explore the features that make your journey unforgettable.
 ![home](/public/photos/home.png)
-**Homepage:** Your travel achievements come to life on the Wishease homepage. See your fulfilled wishes, manage your wishlist, explore diaries, and more—all in one central hub.
+**Homepage:** Your travel achievements come to life on the Wishease homepage.
 ![wishlist](/public/photos/wishlist.png)
-**Wishlist Page:** Curate your travel aspirations on your very own Wishlist Page. Add and mark off destinations you dream of visiting, and watch your travel map evolve.
+**Wishlist Page:** Curate your travel aspirations on your very own Wishlist Page. Add and mark off destinations you dream of visiting.
 ![diary](/public/photos/diary.png)
 **Add Diary Page:** Relive your travel moments with Wishease. Create diary entries for your achieved wishes, capturing dates, dining experiences, anecdotes, and cherished photos.
 ![details](/public/photos/details.png)
