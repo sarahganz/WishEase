@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
-import "./NavBar.css"; // Import your custom CSS for additional styling
+import "./NavBar.css";
 
 export default function NavBarWelcome({ user, setUser }) {
   const logoPath = "/logoPurpleBackgr.png";

@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import * as usersService from "../../utilities/users-service";
 import CreateDiaryEntryForm from "../../components/CreateDiaryEntryForm/CreateDiaryEntryForm";
-import "./AchievedWishDetailsPage.css"; // Import the CSS file
+import "./AchievedWishDetailsPage.css";
 
 function AchievedWishDetailsPage({ user }) {
   const { id } = useParams();
@@ -59,7 +59,6 @@ function AchievedWishDetailsPage({ user }) {
         headers: { Authorization: `Bearer ${token}` },
       });
 
-      // Update the diary entries in state by removing the deleted entry
       setDiaryEntries((prevEntries) =>
         prevEntries.filter((entry) => entry._id !== entryId)
       );

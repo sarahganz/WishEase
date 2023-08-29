@@ -1,4 +1,3 @@
-/* AchievedWishesPage.css */
 .achieved-wishes-container {
   max-width: 600px;
   margin: 0 auto;
@@ -45,12 +44,6 @@ button {
   color: #deced3;
 }
 
-/* .link-button:hover {
-  background-color: #decfd3;
-  color: #69626d;
-} */
-
-/* Media Query for smaller screens */
 @media (max-width: 768px) {
   .country-column,
   .city-column {

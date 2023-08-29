@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import SignUpForm from "../../components/SignUpForm/SignUpForm";
 import LoginForm from "../../components/LoginForm/LoginForm";
 import { Link } from "react-router-dom";
-import "./WelcomePage.css"; // Import the custom CSS for additional styling
+import "./WelcomePage.css";
 
 export default function WelcomePage({ setUser }) {
   const [showSignUp, setShowSignUp] = useState(false);
@@ -33,7 +33,6 @@ export default function WelcomePage({ setUser }) {
           </Link>
         </div>
       </div>
-      <footer className="footer"> {/* Your Footer Component Here */}</footer>
     </div>
   );
 }

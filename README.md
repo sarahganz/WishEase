@@ -9,11 +9,17 @@ WishEase allows users to create and manage a travel diary where they can documen
 ## Website Images
 
 ![Welcome](/public/photos/welcome.png)
+**Welcome Page:** Begin your journey with Wishease, an app that helps you realize your travel dreams. Discover amazing destinations and capture your memories in one place.
 ![AboutPage](/public/photos/about.png)
+**About Page:** Dive deeper into Wishease's world. Learn about our vision to make your travel dreams a reality, and explore the features that make your journey unforgettable.
 ![home](/public/photos/home.png)
+**Homepage:** Your travel achievements come to life on the Wishease homepage. See your fulfilled wishes, manage your wishlist, explore diaries, and more—all in one central hub.
 ![wishlist](/public/photos/wishlist.png)
+**Wishlist Page:** Curate your travel aspirations on your very own Wishlist Page. Add and mark off destinations you dream of visiting, and watch your travel map evolve.
 ![diary](/public/photos/diary.png)
+**Add Diary Page:** Relive your travel moments with Wishease. Create diary entries for your achieved wishes, capturing dates, dining experiences, anecdotes, and cherished photos.
 ![details](/public/photos/details.png)
+**Details Page:** Immerse yourself in the heart of each travel memory. Wishease's Details Page showcases the essence of your achieved wishes, encapsulating your experiences with vivid imagery and captivating stories.
 
 ## Technologies Used
 
@@ -26,8 +32,50 @@ WishEase allows users to create and manage a travel diary where they can documen
 ## Challenging Code Parts
 
 ```javascript
-
+const s3Client = new S3Client();
+const s3Storage = multerS3({
+  s3: s3Client,
+  bucket: "wishease",
+  acl: "public-read",
+  metadata: (req, file, cb) => {
+    cb(null, { fieldname: file.fieldname });
+  },
+  key: (req, file, cb) => {
+    const fileName =
+      req.params.folder +
+      "/" +
+      req.params.id +
+      "/" +
+      uuid.v4() +
+      "_" +
+      file.originalname;
+    cb(null, fileName);
+  },
+});
+function sanitizeFile(file, cb) {
+  const fileExts = [".png", ".jpg", ".jpeg", ".gif"];
+  const isAllowedExt = fileExts.includes(
+    path.extname(file.originalname.toLowerCase())
+  );
+  const isAllowedMimeType = file.mimetype.startsWith("image/");
+  if (isAllowedExt && isAllowedMimeType) {
+    return cb(null, true);
+  } else {
+    cb("Error: File type not allowed!");
+  }
+}
+const uploadImage = multer({
+  storage: s3Storage,
+  fileFilter: (req, file, callback) => {
+    sanitizeFile(file, callback);
+  },
+  limits: {
+    fileSize: 1024 * 1024 * 20,
+  },
+});
 ```
+
+The most challenging code part of Wishease was likely the integration of the image upload and handling feature for diary entries. This involves managing the client-side interface for selecting and uploading images, as well as handling server-side processing of these images and associating them with the corresponding diary entries.
 
 ## Link to Website
 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import * as usersAPI from "../../utilities/users-api";
-import "./AchievedWishesPage.css"; // Import your custom CSS for additional styling
+import "./AchievedWishesPage.css";
 
 export default function AchievedWishesPage() {
   const [achievedWishes, setAchievedWishes] = useState([]);

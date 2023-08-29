@@ -42,7 +42,7 @@ export async function updateDiaryEntry(entryId, formData) {
     const response = await axios.put(`/api/diary/${entryId}`, formData, {
       headers: { Authorization: `Bearer ${token}` },
     });
-    return response.data; // Return the updated entry data
+    return response.data;
   } catch (error) {
     throw error;
   }

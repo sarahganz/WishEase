@@ -78,7 +78,7 @@ function CreateDiaryEntryForm({
           onChange={(e) =>
             setLocalFormData({ ...localFormData, fromDate: e.target.value })
           }
-          className="short-input" // Add a class
+          className="short-input"
         />
 
         <label>To Date:</label>
@@ -88,7 +88,7 @@ function CreateDiaryEntryForm({
           onChange={(e) =>
             setLocalFormData({ ...localFormData, toDate: e.target.value })
           }
-          className="short-input" // Add a class
+          className="short-input"
         />
 
         <label>Restaurants:</label>
